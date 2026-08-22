@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>☠️ YH.X1t.hk — THE HORROR</title>
 
+    <!-- ===== FONTS & ICONS ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
     <style>
-        /* ===== RESET & BASE ===== */
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -25,14 +30,16 @@
             user-select: none;
         }
 
-        /* ===== OVERLAY ===== */
+        /* ============================================================
+                   OVERLAY (ENTRY)
+                   ============================================================ */
         #overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.92);
+            background: rgba(0, 0, 0, 0.94);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -47,17 +54,17 @@
         }
 
         #overlay h1 {
-            font-size: 4rem;
+            font-size: 4.2rem;
             color: #ff0000;
             text-shadow: 0 0 40px #ff0000, 0 0 80px #ff000066;
             animation: glitchText 1.8s infinite;
-            letter-spacing: 8px;
+            letter-spacing: 10px;
         }
 
         #overlay p {
             color: #ff6666;
             font-size: 1.4rem;
-            margin-top: 20px;
+            margin-top: 18px;
             animation: pulse 1.2s infinite alternate;
         }
 
@@ -84,9 +91,16 @@
             transform: scale(1.1);
         }
 
-        /* ===== GLITCH TEXT ===== */
+        /* ============================================================
+                   GLITCH & PULSE KEYFRAMES
+                   ============================================================ */
         @keyframes glitchText {
-            0% {
+            0%,
+            20%,
+            40%,
+            60%,
+            80%,
+            100% {
                 transform: skew(0deg);
                 opacity: 1;
             }
@@ -95,41 +109,20 @@
                 opacity: 0.8;
                 text-shadow: 0 0 60px #ff0000, 4px 0 0 #00ff00, -4px 0 0 #0000ff;
             }
-            20% {
+            30% {
                 transform: skew(-3deg) translateX(-4px);
-                opacity: 1;
                 text-shadow: 0 0 40px #ff0000;
             }
-            30% {
-                transform: skew(0deg);
-                opacity: 0.9;
-            }
-            40% {
+            50% {
                 transform: skew(5deg) translateX(6px);
                 text-shadow: 0 0 80px #ff0000, 6px 0 0 #00ff00, -6px 0 0 #0000ff;
             }
-            50% {
-                transform: skew(-5deg) translateX(-6px);
-                opacity: 1;
-            }
-            60% {
-                transform: skew(0deg);
-            }
             70% {
-                transform: skew(2deg) translateX(2px);
-                text-shadow: 0 0 50px #ff0000;
-            }
-            80% {
-                transform: skew(-2deg) translateX(-2px);
-                opacity: 0.9;
+                transform: skew(-5deg) translateX(-6px);
             }
             90% {
-                transform: skew(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: skew(0deg);
-                opacity: 1;
+                transform: skew(2deg) translateX(2px);
+                text-shadow: 0 0 50px #ff0000;
             }
         }
 
@@ -144,7 +137,9 @@
             }
         }
 
-        /* ===== CANVAS ===== */
+        /* ============================================================
+                   CANVAS BACKGROUND
+                   ============================================================ */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -154,21 +149,23 @@
             height: 100vh;
         }
 
-        /* ===== MAIN CARD ===== */
+        /* ============================================================
+                   MAIN CARD
+                   ============================================================ */
         .card {
             position: relative;
             z-index: 1;
             width: 92%;
-            max-width: 960px;
+            max-width: 1000px;
             margin: 30px auto;
-            padding: 30px 25px;
+            padding: 35px 30px 40px;
             background: rgba(10, 0, 0, 0.88);
             border: 1px solid #ff000044;
-            border-radius: 20px;
+            border-radius: 24px;
             box-shadow: 0 0 40px #ff000033, inset 0 0 60px #ff000011;
             backdrop-filter: blur(6px);
             animation: cardFloat 5s ease-in-out infinite;
-            max-height: 90vh;
+            max-height: 92vh;
             overflow-y: auto;
         }
 
@@ -186,19 +183,21 @@
         @keyframes cardFloat {
             0%,
             100% {
-                transform: translateY(0px) scale(1);
+                transform: translateY(0) scale(1);
             }
             50% {
                 transform: translateY(-10px) scale(1.005);
             }
         }
 
-        /* ===== PROFILE ===== */
+        /* ============================================================
+                   PROFILE
+                   ============================================================ */
         .profile-container {
             position: relative;
             width: 180px;
             height: 180px;
-            margin: 0 auto 20px;
+            margin: 0 auto 22px;
         }
 
         .profile-container img {
@@ -239,7 +238,9 @@
             }
         }
 
-        /* ===== TYPOGRAPHY ===== */
+        /* ============================================================
+                   TYPOGRAPHY
+                   ============================================================ */
         h1 {
             font-size: 2.8rem;
             text-shadow: 0 0 30px #ff0000, 0 0 60px #ff000044;
@@ -251,7 +252,7 @@
         h2 {
             color: #ff4444;
             text-shadow: 0 0 20px #ff000066;
-            margin: 20px 0 10px;
+            margin: 24px 0 12px;
             font-size: 1.8rem;
             letter-spacing: 2px;
             border-bottom: 1px solid #ff000033;
@@ -280,10 +281,12 @@
             color: #ff3333;
         }
 
-        /* ===== VISITOR COUNT ===== */
+        /* ============================================================
+                   VISITOR COUNTER
+                   ============================================================ */
         .counter-box {
-            margin: 20px 0 15px;
-            padding: 10px 20px;
+            margin: 20px 0 16px;
+            padding: 10px 24px;
             border: 1px solid #ff000044;
             border-radius: 12px;
             background: rgba(255, 0, 0, 0.05);
@@ -301,7 +304,9 @@
             animation: pulse 1.4s infinite alternate;
         }
 
-        /* ===== SECTION ===== */
+        /* ============================================================
+                   SECTIONS
+                   ============================================================ */
         .section {
             margin-top: 30px;
             padding: 10px 0;
@@ -311,7 +316,7 @@
         .section video {
             max-width: 100%;
             border-radius: 12px;
-            margin: 8px 0;
+            margin: 8px 4px;
             border: 1px solid #ff000033;
             box-shadow: 0 0 30px #ff000022;
         }
@@ -320,7 +325,9 @@
             max-width: 280px;
         }
 
-        /* ===== TECH STACK BADGES ===== */
+        /* ============================================================
+                   TECH STACK BADGES
+                   ============================================================ */
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
@@ -341,10 +348,35 @@
             box-shadow: 0 0 30px #ff000066;
         }
 
-        /* ===== CONTACT BUTTON ===== */
+        /* ============================================================
+                   GITHUB STATS
+                   ============================================================ */
+        .github-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 14px;
+        }
+
+        .github-stats img {
+            border-radius: 10px;
+            border: 1px solid #ff000033;
+            transition: all 0.3s;
+            max-width: 100%;
+        }
+
+        .github-stats img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 40px #ff000044;
+        }
+
+        /* ============================================================
+                   CONTACT BUTTON
+                   ============================================================ */
         .contact-btn {
-            margin-top: 25px;
-            padding: 14px 40px;
+            margin-top: 28px;
+            padding: 14px 44px;
             background: transparent;
             color: #ff1a1a;
             border: 2px solid #ff1a1a;
@@ -395,7 +427,9 @@
             }
         }
 
-        /* ===== CONTACT LINKS ===== */
+        /* ============================================================
+                   CONTACT LINKS
+                   ============================================================ */
         .contact-links {
             display: none;
             margin-top: 25px;
@@ -421,7 +455,7 @@
         }
 
         .badge {
-            padding: 12px 24px;
+            padding: 12px 26px;
             border-radius: 10px;
             font-weight: bold;
             text-decoration: none;
@@ -432,6 +466,9 @@
             border: 1px solid transparent;
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .badge::before {
@@ -490,7 +527,9 @@
             color: #ff6688;
         }
 
-        /* ===== SCARY GLITCH OVERLAY ===== */
+        /* ============================================================
+                   GLITCH OVERLAY (scanlines)
+                   ============================================================ */
         #glitch-overlay {
             position: fixed;
             top: 0;
@@ -516,7 +555,6 @@
             }
         }
 
-        /* ===== FLICKER ===== */
         .flicker {
             animation: flicker 0.15s infinite alternate;
         }
@@ -530,7 +568,9 @@
             }
         }
 
-        /* ===== JUMPSCARE CONTAINER ===== */
+        /* ============================================================
+                   JUMPSCARE
+                   ============================================================ */
         #jumpscare {
             position: fixed;
             top: 0;
@@ -576,14 +616,41 @@
             }
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ============================================================
+                   HIDDEN MESSAGE
+                   ============================================================ */
+        .hidden-message {
+            position: fixed;
+            bottom: 12px;
+            right: 14px;
+            font-size: 0.6rem;
+            color: #ff000022;
+            z-index: 2;
+            letter-spacing: 2px;
+            animation: pulse 4s infinite alternate;
+            pointer-events: none;
+        }
+
+        /* ============================================================
+                   DIVIDER
+                   ============================================================ */
+        .divider {
+            width: 60%;
+            height: 1px;
+            margin: 20px auto;
+            background: linear-gradient(90deg, transparent, #ff000066, transparent);
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
         @media (max-width: 600px) {
             h1 {
                 font-size: 2rem;
             }
             .card {
                 padding: 18px 12px;
-                margin: 15px auto;
+                margin: 12px auto;
             }
             .profile-container {
                 width: 130px;
@@ -613,9 +680,14 @@
             .counter-box span {
                 font-size: 1.4rem;
             }
+            .github-stats img {
+                max-width: 90%;
+            }
         }
 
-        /* ===== SCROLLBAR ===== */
+        /* ============================================================
+                   SCROLLBAR
+                   ============================================================ */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -631,40 +703,22 @@
             background: #ff000099;
         }
 
-        /* ===== RED TEXT GLOW ===== */
         .red-glow {
             color: #ff1a1a;
             text-shadow: 0 0 30px #ff0000, 0 0 60px #ff000044;
         }
-
-        /* ===== HIDDEN SCARY MESSAGE ===== */
-        .hidden-message {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            font-size: 0.6rem;
-            color: #ff000022;
-            z-index: 2;
-            letter-spacing: 2px;
-            animation: pulse 4s infinite alternate;
-            pointer-events: none;
-        }
     </style>
 </head>
+
 <body>
 
     <!-- ===== GLITCH OVERLAY ===== -->
     <div id="glitch-overlay"></div>
 
-    <!-- ===== JUMPSCARE ===== -->
-    <div id="jumpscare">
-        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzRkNzNqdnl1NXVkdnQ3YTR5MHNwcTVjZzVuN2ZhMTNmdHg5d2MzdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abldaH1pGXfJ0qY/giphy.gif" alt="jumpscare">
-    </div>
-
     <!-- ===== OVERLAY (ENTRY) ===== -->
     <div id="overlay">
-        <h1>☠️ YH.X1t.hk</h1>
-        <p>〣 اهلاً بك في عالمي  〣</p>
+        <h1>☠ YH.X1t.hk</h1>
+        <p>〣 اهلاً بك في عالمي 〣</p>
         <p style="font-size:0.9rem; color:#ff333388; margin-top:4px;">— أنت لست وحدك —</p>
         <button class="enter-btn" id="enterBtn">⛧ ادخل ⛧</button>
     </div>
@@ -675,291 +729,211 @@
     <!-- ===== MAIN CARD ===== -->
     <div class="card" id="mainCard">
 
-        <!-- PROFILE -->
+        <!-- ===== PROFILE ===== -->
         <div class="profile-container">
-            <img src="https://up6.cc/2026/08/178743092008371.png" alt="profile">
+            <img src="https://up6.cc/2026/08/178743092008371.png" alt="profile" />
         </div>
 
         <h1 class="flicker">-YH.X1t.hk</h1>
         <p class="sub-title">〣 KNOW MORE ABOUT ME 〣</p>
 
         <div class="bio-text">
-            <strong>☠ Ethical cybersecurity professional</strong> licensed by the Communications Authority<br>
+            <strong>☠ Ethical cybersecurity professional</strong> licensed by the Communications Authority<br />
             and a <strong>forensic &amp; technical expert</strong> licensed by the Cybercrime Department <strong>(CISSP)</strong>.
         </div>
 
-        <h1 style="font-size:2.2rem; margin-top:8px;">YAHYA.HK</h1>
+        <h1 style="font-size:2.2rem; margin-top:6px;">YAHYA.HK</h1>
 
-        <!-- COUNTER -->
+        <!-- ===== VISITOR COUNTER ===== -->
         <div class="counter-box">
             💀 TOTAL VISITORS: <span id="visitor-count">666K</span>
         </div>
+        
+        <div class="divider"></div>
 
-        <!-- GIFS -->
-        <div class="section">
-            <img src="https://user-images.githubusercontent.com/49580304/110319833-47367180-7fc4-11eb-87a7-392509eca9d7.gif" alt="gif1" style="max-width:280px;">
-            <img src="https://user-images.githubusercontent.com/49580304/110318584-81067880-7fc2-11eb-8391-152d308e7f2b.gif" alt="gif2" style="max-width:280px;">
-        </div>
-
-        <!-- TECH STACK -->
+        <!-- ===== TECH STACK ===== -->
         <div class="section">
             <h2>💻 Tech Stack</h2>
             <div class="tech-stack">
-                <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white">
-                <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat-square&logo=javascript&logoColor=%23F7DF1E">
-                <img src="https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=ffdd54">
-                <img src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat-square&logo=php&logoColor=white">
-                <img src="https://img.shields.io/badge/node.js-6DA55F?style=flat-square&logo=node.js&logoColor=white">
-                <img src="https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB">
-                <img src="https://img.shields.io/badge/mongodb-%234ea94b.svg?style=flat-square&logo=mongodb&logoColor=white">
-                <img src="https://img.shields.io/badge/nginx-%23009639.svg?style=flat-square&logo=nginx&logoColor=white">
-                <img src="https://img.shields.io/badge/cloudflare-F38020?style=flat-square&logo=cloudflare&logoColor=white">
-                <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white">
-                <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=flat-square&logo=mysql&logoColor=white">
-                <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=flat-square&logo=postgresql&logoColor=white">
-                <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=flat-square&logo=redis&logoColor=white">
-                <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=flat-square&logo=TensorFlow&logoColor=white">
-                <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=flat-square&logo=githubactions&logoColor=white">
-                <img src="https://img.shields.io/badge/OpenGL-white?logo=OpenGL&style=flat-square">
-                <img src="https://img.shields.io/badge/Wireguard-%2388171A.svg?style=flat-square&logo=wireguard&logoColor=white">
+                <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
+                <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat-square&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript" />
+                <img src="https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=ffdd54" alt="Python" />
+                <img src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat-square&logo=php&logoColor=white" alt="PHP" />
+                <img src="https://img.shields.io/badge/node.js-6DA55F?style=flat-square&logo=node.js&logoColor=white" alt="Node.js" />
+                <img src="https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB" alt="React" />
+                <img src="https://img.shields.io/badge/mongodb-%234ea94b.svg?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB" />
+                <img src="https://img.shields.io/badge/nginx-%23009639.svg?style=flat-square&logo=nginx&logoColor=white" alt="Nginx" />
+                <img src="https://img.shields.io/badge/cloudflare-F38020?style=flat-square&logo=cloudflare&logoColor=white" alt="Cloudflare" />
+                <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+                <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=flat-square&logo=mysql&logoColor=white" alt="MySQL" />
+                <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+                <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=flat-square&logo=redis&logoColor=white" alt="Redis" />
+                <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=flat-square&logo=TensorFlow&logoColor=white" alt="TensorFlow" />
+                <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions" />
+                <img src="https://img.shields.io/badge/OpenGL-white?logo=OpenGL&style=flat-square" alt="OpenGL" />
+                <img src="https://img.shields.io/badge/Wireguard-%2388171A.svg?style=flat-square&logo=wireguard&logoColor=white" alt="Wireguard" />
             </div>
         </div>
 
-        <!-- CURRENT FOCUS -->
+        <div class="divider"></div>
+
+        <!-- ===== CURRENT FOCUS ===== -->
         <div class="section">
             <h2>🤖 Current Focus</h2>
-            <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXBmeHE4MHI4dTZvYnhtd2owbWJxNWR2MDd0YzNndmNyMzY0ZTJ2ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6OrCT1jVbonHG/giphy.gif" alt="focus" style="max-width:300px;">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXBmeHE4MHI4dTZvYnhtd2owbWJxNWR2MDd0YzNndmNyMzY0ZTJ2ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6OrCT1jVbonHG/giphy.gif" alt="focus" style="max-width:300px;" />
         </div>
 
-        <!-- HACK -->
+        <div class="divider"></div>
+
+        <!-- ===== HACK ===== -->
         <div class="section">
             <h2 style="color:#ff0000; text-shadow:0 0 60px #ff0000;">☠ HACK ☠</h2>
             <div class="tech-stack">
-                <img src="https://img.shields.io/badge/FastAPI-005571?style=flat-square&logo=fastapi">
-                <img src="https://img.shields.io/badge/JWT-black?style=flat-square&logo=JSON%20web%20tokens">
-                <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat-square&logo=pandas&logoColor=white">
-                <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat-square&logo=numpy&logoColor=white">
-                <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat-square&logo=PyTorch&logoColor=white">
-                <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=flat-square&logo=scikit-learn&logoColor=white">
-                <img src="https://img.shields.io/badge/Notion-%23000000.svg?style=flat-square&logo=notion&logoColor=white">
-                <img src="https://img.shields.io/badge/cisco-%23049fd9.svg?style=flat-square&logo=cisco&logoColor=black">
+                <img src="https://img.shields.io/badge/FastAPI-005571?style=flat-square&logo=fastapi" alt="FastAPI" />
+                <img src="https://img.shields.io/badge/JWT-black?style=flat-square&logo=JSON%20web%20tokens" alt="JWT" />
+                <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat-square&logo=pandas&logoColor=white" alt="Pandas" />
+                <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat-square&logo=numpy&logoColor=white" alt="NumPy" />
+                <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat-square&logo=PyTorch&logoColor=white" alt="PyTorch" />
+                <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=flat-square&logo=scikit-learn&logoColor=white" alt="Scikit-learn" />
+                <img src="https://img.shields.io/badge/Notion-%23000000.svg?style=flat-square&logo=notion&logoColor=white" alt="Notion" />
+                <img src="https://img.shields.io/badge/cisco-%23049fd9.svg?style=flat-square&logo=cisco&logoColor=black" alt="Cisco" />
             </div>
         </div>
 
-        <!-- VIDEO -->
+        <div class="divider"></div>
+
+        <!-- ===== VIDEO ===== -->
         <div class="section">
             <video width="100%" autoplay muted loop playsinline style="max-width:300px; border-radius:15px; border:1px solid #ff000044; box-shadow:0 0 40px #ff000022;">
-                <source src="https://files.catbox.moe/9lpd3n.webm" type="video/webm">
+                <source src="https://files.catbox.moe/9lpd3n.webm" type="video/webm" />
             </video>
         </div>
 
-        <!-- MORALS -->
+        <div class="divider"></div>
+
+        <!-- ===== MORALS ===== -->
         <div class="section">
             <h1 style="font-size:1.8rem; text-shadow:0 0 30px #ff0000;">Adhere to morals...</h1>
             <div style="margin-top:15px; line-height:2.2;">
-                <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white">
-                <img src="https://img.shields.io/badge/markdown-%23000000.svg?style=flat-square&logo=markdown&logoColor=white">
-                <img src="https://img.shields.io/badge/bootstrap-%238511FA.svg?style=flat-square&logo=bootstrap&logoColor=white">
-                <img src="https://img.shields.io/badge/React_Router-CA4245?style=flat-square&logo=react-router&logoColor=white">
-                <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=flat-square&logo=react%20query&logoColor=white">
-                <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white">
-                <img src="https://img.shields.io/badge/gunicorn-%298729.svg?style=flat-square&logo=gunicorn&logoColor=white">
-                <img src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=flat-square&logo=sqlite&logoColor=white">
-                <img src="https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=mariadb&logoColor=white">
-                <img src="https://img.shields.io/badge/SciPy-%230C55A5.svg?style=flat-square&logo=scipy&logoColor=white">
-                <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=flat-square&logo=Matplotlib&logoColor=black">
-                <img src="https://img.shields.io/badge/Render-%46E3B7.svg?style=flat-square&logo=render&logoColor=white">
-                <img src="https://img.shields.io/badge/Vultr-007BFC.svg?style=flat-square&logo=vultr">
-                <img src="https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=flat-square&logo=google-cloud&logoColor=white">
-                <img src="https://shields.io/badge/FFmpeg-%23171717.svg?logo=ffmpeg&style=flat-square&labelColor=171717&logoColor=5cb85c">
-                <img src="https://img.shields.io/badge/Twilio-F22F46?style=flat-square&logo=Twilio&logoColor=white">
+                <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
+                <img src="https://img.shields.io/badge/markdown-%23000000.svg?style=flat-square&logo=markdown&logoColor=white" alt="Markdown" />
+                <img src="https://img.shields.io/badge/bootstrap-%238511FA.svg?style=flat-square&logo=bootstrap&logoColor=white" alt="Bootstrap" />
+                <img src="https://img.shields.io/badge/React_Router-CA4245?style=flat-square&logo=react-router&logoColor=white" alt="React Router" />
+                <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=flat-square&logo=react%20query&logoColor=white" alt="React Query" />
+                <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white" alt="Vite" />
+                <img src="https://img.shields.io/badge/gunicorn-%298729.svg?style=flat-square&logo=gunicorn&logoColor=white" alt="Gunicorn" />
+                <img src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite" />
+                <img src="https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=mariadb&logoColor=white" alt="MariaDB" />
+                <img src="https://img.shields.io/badge/SciPy-%230C55A5.svg?style=flat-square&logo=scipy&logoColor=white" alt="SciPy" />
+                <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=flat-square&logo=Matplotlib&logoColor=black" alt="Matplotlib" />
+                <img src="https://img.shields.io/badge/Render-%46E3B7.svg?style=flat-square&logo=render&logoColor=white" alt="Render" />
+                <img src="https://img.shields.io/badge/Vultr-007BFC.svg?style=flat-square&logo=vultr" alt="Vultr" />
+                <img src="https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=flat-square&logo=google-cloud&logoColor=white" alt="Google Cloud" />
+                <img src="https://shields.io/badge/FFmpeg-%23171717.svg?logo=ffmpeg&style=flat-square&labelColor=171717&logoColor=5cb85c" alt="FFmpeg" />
+                <img src="https://img.shields.io/badge/Twilio-F22F46?style=flat-square&logo=Twilio&logoColor=white" alt="Twilio" />
             </div>
         </div>
 
-        <!-- GITHUB STATS -->
-        <p align="left"> <img src="https://komarev.com/ghpvc/?username=22MH1A42G1&label=Profile%20views&color=0e75b6&style=flat" alt="22MH1A42G1" /> </p>
+        <div class="divider"></div>
 
-![Header](https://capsule-render.vercel.app/api?type=waving&color=0:00C9FF,100:92FE9D&height=250&section=header&text=Hi%20I'm%20Indana%20Aditya%20%F0%9F%91%8B&fontSize=45&fontColor=ffffff)
+        <!-- ===== GITHUB STATS ===== -->
+        <div class="section">
+            <h2>🐙 GitHub Stats</h2>
 
-<h2 align="center">🚀 Aspiring AI/ML Engineer | AWS DEVELOPER ASSOCIATE Certified</h2>
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:10px;">
+                <img src="https://github-readme-stats.vercel.app/api?username=22MH1A42G1&show_icons=true&theme=radical&hide_border=true&bg_color=0a0000&title_color=ff0000&icon_color=ff0000&text_color=ff6666" alt="GitHub Stats" style="max-width:100%; border-radius:10px;" />
+                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=22MH1A42G1&layout=compact&theme=radical&hide_border=true&bg_color=0a0000&title_color=ff0000&text_color=ff6666" alt="Top Langs" style="max-width:100%; border-radius:10px;" />
+            </div>
 
----
+            <div style="margin-top:12px;">
+                <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=22MH1A42G1&theme=radical" alt="Profile Details" style="max-width:100%; border-radius:10px; border:1px solid #ff000033;" />
+            </div>
 
-## 🧑‍💻 About Me
-  I am Aditya Indana, a Computer Science student specializing in AI & ML, with hands-on experience in cloud platforms, DevOps workflows, and production-oriented web development.
+            <div style="margin-top:12px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+                <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=22MH1A42G1&theme=radical" alt="Stats Card" style="max-width:100%; border-radius:10px;" />
+                <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=22MH1A42G1&theme=radical" alt="Commit Language" style="max-width:100%; border-radius:10px;" />
+            </div>
 
----
+            <div style="margin-top:14px;">
+                <img src="https://github-readme-activity-graph.vercel.app/graph?username=22MH1A42G1&theme=redical&hide_border=true&bg_color=0a0000&color=ff4444&line=ff0000&point=ff6666" alt="Activity Graph" style="max-width:100%; border-radius:10px; border:1px solid #ff000033;" />
+            </div>
 
-## 📬 Contact Me
+            <div style="margin-top:12px;">
+                <img src="https://raw.githubusercontent.com/22MH1A42G1/22MH1A42G1/output/github-contribution-grid-snake-dark.svg" alt="Snake" style="max-width:100%; border-radius:10px; border:1px solid #ff000033;" />
+            </div>
 
-<p align="center">
-  <img src="https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif" width="200" alt="Handshake animation" />
-</p>
-
-<p align="center">
-  If you'd like to collaborate, discuss tech, or have any questions, feel free to reach out!<br>
-  I'm open to internships, freelance, and full-time opportunities in Cloud | DevOps | Python | AI.
-</p>
-
-<p align="center">
-  <a href="mailto:adityaindana@gmail.com">
-    <img src="https://img.shields.io/badge/Email-adityaindana@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
-  </a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/aditya-indana-899734216" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-Profile-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/22MH1A42G1" target="_blank">
-    <img src="https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github&logoColor=white"/>
-  </a>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://22mh1a42g1.github.io/MyPortfolio/" target="_blank">
-    <img src="https://img.shields.io/badge/Portfolio-WEBSITE-03b1fc?style=for-the-badge&logo=profile&logoColor=white"/>
-  </a>
-</p>
-
----
-
-<h3 align="left">🌐 Coding Profiles</h3>
-
-<p align="left">
-  
-  <a href="https://leetcode.com/u/Adityaaaaaaaaaaaaa/" target="_blank" title="LeetCode">
-    <img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/000000/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-color-tal-revivo.png" width="100" alt="LeetCode"/> 
-  </a>
-    <a href="https://www.codechef.com/users/a9127416/" target="_blank" title="CodeChef">
-    <img src="https://aaruush22-bucket.s3.ap-south-1.amazonaws.com/sponsors/codechef-0074fa6e.webp" width="100" alt="CodeChef"/>
-  </a> 
-  <a href="https://codeforces.com/profile/Indana.Aditya" target="_blank" title="Codeforces">
-    <img src="https://i-blog.csdnimg.cn/direct/c93aa961d6464bd48bfbdc0fa17918c5.png?x-oss-process=image/resize,m_fixed,h_224,w_224" alt="Codeforces" width="100" />
-  </a>  
-  <a href="https://www.hackerrank.com/profile/22MH1A42G1" target="_blank" title="Hackerrank">
-    <img src="https://img.favpng.com/25/19/5/hackerrank-computer-programming-programmer-logo-interview-png-favpng-cCaqcTRb3LNhxuM4FP2L34K7w_t.jpg" width="100" alt="HackerRank"/>
-  </a>
-  <a href="https://www.geeksforgeeks.org/user/a9127e1at/" target="_blank" title="GeeksforGeeks">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg" width="100" alt="GeeksforGeeks"/>
-  </a>
-</p>
-
----
-
-# GitHub 
-
-## 📈 GitHub Stats
-<p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=22MH1A42G1&theme=tokyonight" width="49%" alt="GitHub statistics" />
-</p>
-
-
-## 🖋️ GitHub Language
-<p align="left">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=22MH1A42G1&theme=tokyonight" width="40%" alt="Most used languages" />
-</p>
-
-## 📈 Github Profile Summary Cards
-<p align="left">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=22MH1A42G1&theme=radical" alt="GitHub profile summary" />
-</p>
-
----
-## My Contributions
-
-<div align="center">
-  <img alt="snake eating my contributions" src="https://raw.githubusercontent.com/22MH1A42G1/22MH1A42G1/output/github-contribution-grid-snake-dark.svg" />
-</div>
-
-
-
-## 📈 Activity Graph
-<div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=22MH1A42G1&theme=tokyo-night&hide_border=true" alt="Activity graph" />
-</div>
-
----
-
-<h3 align="left">🚀 Tech Stack I've Worked With</h3>
-
-<p align="left">
-  <!-- Programming Languages -->
-  <a href="https://www.python.org/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" alt="Python"/></a>
-  <a href="https://www.java.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" width="40" alt="Java"/></a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="40" alt="JavaScript"/></a>
-  <a href="https://www.typescriptlang.org/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="40" alt="TypeScript"/></a>
-
-  <!-- Frontend -->
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" alt="HTML5"/></a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" alt="CSS3"/></a>
-  <a href="https://getbootstrap.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" width="40" alt="Bootstrap"/></a>
-  <a href="https://tailwindcss.com/" target="_blank"><img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" width="40" alt="Tailwind CSS"/></a>
-
-
-  <!-- Backend -->
-  <a href="https://nodejs.org/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="40" alt="Node.js"/></a>
-  <a href="https://flask.palletsprojects.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="40" alt="Flask"/></a>
-
-  <!-- Databases -->
-  <a href="https://www.mysql.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="40" alt="MySQL"/></a>
-  <a href="https://www.mongodb.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="40" alt="MongoDB"/></a>
-
-  <!-- DevOps & Cloud -->
-  <a href="https://aws.amazon.com/" target="_blank">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" width="40" height="40"/>
-</a>
-  <a href="https://www.docker.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40" alt="Docker"/></a>
-  <a href="https://git-scm.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" alt="Git"/></a>
-  <a href="https://github.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="40" alt="GitHub"/></a>
-
-</p>
-
-
----
-
-<p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3000&pause=1000&color=F75C7E&center=true&vCenter=true&width=435&lines=Thanks+for+visiting+my+profile!;Feel+free+to+connect+%F0%9F%91%8B" />
-</p>
-        <!-- CONTACT BUTTON -->
-        <button class="contact-btn" id="contactToggle">☠ تواصل معي ☠</button>
-
-        <!-- CONTACT LINKS -->
-        <div class="contact-links" id="contactBox">
-
-    <a href="https://github.com/0xbitx" target="_blank" class="badge github">
-        <i class="fa-brands fa-github"></i> GITHUB
-    </a>
-
-    <a href="https://www.facebook.com/profile.php?id=100000165532525" target="_blank" class="badge facebook">
-        <i class="fa-brands fa-facebook-f"></i> FACEBOOK
-    </a>
-
-    <a href="https://t.me/YahyaH1k" target="_blank" class="badge telegram">
-        <i class="fa-brands fa-telegram"></i> TELEGRAM
-    </a>
-
-    <a href="https://www.instagram.com/o2oc_?igsh=MWN0dXBpajdzaTY2Zw==" target="_blank" class="badge instagram">
-        <i class="fa-brands fa-instagram"></i> INSTAGRAM
-    </a>
-
+            <p style="margin-top:14px; color:#ff666688; font-size:0.9rem;">
+                <img src="https://komarev.com/ghpvc/?username=22MH1A42G1&label=Profile%20views&color=ff0000&style=flat" alt="Profile views" />
+            </p>
         </div>
 
-        <!-- HIDDEN MESSAGE -->
+        <div class="divider"></div>
+
+        <!-- ===== ABOUT ME ===== -->
+        <div class="section">
+            <h2>🧑‍💻 About Me</h2>
+            <div class="bio-text" style="max-width:750px;">
+                I am <strong>Aditya Indana</strong>, a Computer Science student specializing in AI &amp; ML, with hands-on experience in cloud platforms, DevOps workflows, and production-oriented web development.
+                <br /><br />
+                🚀 <strong>Aspiring AI/ML Engineer</strong> | <strong>AWS DEVELOPER ASSOCIATE</strong> Certified
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ===== CONTACT ===== -->
+        <div class="section">
+            <h2>📬 Contact Me</h2>
+
+            <div style="margin:10px 0;">
+                <img src="https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif" alt="Handshake" style="max-width:180px; border-radius:12px;" />
+            </div>
+
+            <div class="bio-text" style="max-width:600px; font-size:0.95rem;">
+                If you'd like to collaborate, discuss tech, or have any questions, feel free to reach out!<br />
+                I'm open to internships, freelance, and full-time opportunities in <strong>Cloud | DevOps | Python | AI</strong>.
+            </div>
+
+            <button class="contact-btn" id="contactToggle">☠ تواصل معي ☠</button>
+
+            <!-- CONTACT LINKS (تم إزالة واتساب، فقط الأربعة المطلوبة) -->
+            <div class="contact-links" id="contactBox">
+                <a href="https://github.com/0xbitx" target="_blank" class="badge github">
+                    <i class="fab fa-github"></i> GITHUB
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100000165532525" target="_blank" class="badge facebook">
+                    <i class="fab fa-facebook-f"></i> FACEBOOK
+                </a>
+                <a href="https://t.me/YahyaH1k" target="_blank" class="badge telegram">
+                    <i class="fab fa-telegram"></i> TELEGRAM
+                </a>
+                <a href="https://www.instagram.com/o2oc_?igsh=MWN0dXBpajdzaTY2Zw==" target="_blank" class="badge instagram">
+                    <i class="fab fa-instagram"></i> INSTAGRAM
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== HIDDEN MESSAGE ===== -->
         <div class="hidden-message">⛧ you are being watched ⛧</div>
 
     </div>
 
-    <!-- ===== AUDIO (WORKING) ===== -->
+    <!-- ===== AUDIO ===== -->
     <audio id="bgMusic" loop preload="auto">
-        <source src="https://www.myinstants.com/media/sounds/creepy-ambient.mp3" type="audio/mpeg">
-        <source src="https://www.myinstants.com/media/sounds/horror-ambience.mp3" type="audio/mpeg">
-        <!-- Fallback: generate a low-frequency drone via Web Audio -->
+        <source src="https://www.myinstants.com/media/sounds/creepy-ambient.mp3" type="audio/mpeg" />
+        <source src="https://www.myinstants.com/media/sounds/horror-ambience.mp3" type="audio/mpeg" />
     </audio>
 
-    <!-- ===== SCARY SOUND EFFECTS ===== -->
     <audio id="jumpscareSound" preload="auto">
-        <source src="https://www.myinstants.com/media/sounds/scream-3.mp3" type="audio/mpeg">
+        <source src="https://www.myinstants.com/media/sounds/scream-3.mp3" type="audio/mpeg" />
     </audio>
 
-    <!-- ===== SCRIPTS ===== -->
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
     <script>
         // ============================================================
-        // 1. AUDIO ENGINE — Guaranteed to work
+        // 1. AUDIO ENGINE
         // ============================================================
         (function initAudio() {
             const audio = document.getElementById('bgMusic');
@@ -967,20 +941,16 @@
             let oscillator = null;
             let gainNode = null;
             let isPlaying = false;
-            let useWebAudio = false;
 
-            // Try to play the HTML5 audio
             function playHTML5Audio() {
-                audio.volume = 0.4;
+                audio.volume = 0.35;
                 audio.loop = true;
-                const playPromise = audio.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
+                const p = audio.play();
+                if (p !== undefined) {
+                    p.then(() => {
                         isPlaying = true;
-                        useWebAudio = false;
-                        console.log('🎵 HTML5 Audio playing');
+                        console.log('🎵 Audio playing');
                     }).catch(() => {
-                        // Fallback to Web Audio
                         initWebAudio();
                     });
                 } else {
@@ -988,113 +958,84 @@
                 }
             }
 
-            // Web Audio fallback — generates a creepy drone
             function initWebAudio() {
                 try {
                     audioCtx = new(window.AudioContext || window.webkitAudioContext)();
                     oscillator = audioCtx.createOscillator();
                     gainNode = audioCtx.createGain();
-
                     oscillator.type = 'sawtooth';
                     oscillator.frequency.setValueAtTime(110, audioCtx.currentTime);
                     oscillator.frequency.exponentialRampToValueAtTime(55, audioCtx.currentTime + 4);
                     oscillator.frequency.exponentialRampToValueAtTime(88, audioCtx.currentTime + 8);
-                    oscillator.frequency.exponentialRampToValueAtTime(44, audioCtx.currentTime + 12);
-
-                    // Add some detune for creepiness
                     oscillator.detune.setValueAtTime(0, audioCtx.currentTime);
                     oscillator.detune.linearRampToValueAtTime(1200, audioCtx.currentTime + 6);
-                    oscillator.detune.linearRampToValueAtTime(-800, audioCtx.currentTime + 10);
-
-                    gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 3);
-                    gainNode.gain.exponentialRampToValueAtTime(0.06, audioCtx.currentTime + 7);
-
+                    gainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.10, audioCtx.currentTime + 3);
                     oscillator.connect(gainNode);
                     gainNode.connect(audioCtx.destination);
-
                     oscillator.start(audioCtx.currentTime);
                     oscillator.stop(audioCtx.currentTime + 14);
 
-                    // Loop the drone
                     function loopDrone() {
                         if (!audioCtx || audioCtx.state === 'closed') return;
                         try {
-                            const newOsc = audioCtx.createOscillator();
-                            const newGain = audioCtx.createGain();
-                            newOsc.type = 'sawtooth';
-                            newOsc.frequency.setValueAtTime(66 + Math.random() * 44, audioCtx.currentTime);
-                            newOsc.frequency.exponentialRampToValueAtTime(33 + Math.random() * 33, audioCtx.currentTime + 5);
-                            newOsc.detune.setValueAtTime(Math.random() * 400 - 200, audioCtx.currentTime);
-                            newGain.gain.setValueAtTime(0.06 + Math.random() * 0.04, audioCtx.currentTime);
-                            newGain.gain.exponentialRampToValueAtTime(0.02, audioCtx.currentTime + 6);
-                            newOsc.connect(newGain);
-                            newGain.connect(audioCtx.destination);
-                            newOsc.start(audioCtx.currentTime);
-                            newOsc.stop(audioCtx.currentTime + 6);
+                            const no = audioCtx.createOscillator();
+                            const ng = audioCtx.createGain();
+                            no.type = 'sawtooth';
+                            no.frequency.setValueAtTime(66 + Math.random() * 44, audioCtx.currentTime);
+                            no.frequency.exponentialRampToValueAtTime(33 + Math.random() * 33, audioCtx.currentTime + 5);
+                            no.detune.setValueAtTime(Math.random() * 400 - 200, audioCtx.currentTime);
+                            ng.gain.setValueAtTime(0.05 + Math.random() * 0.04, audioCtx.currentTime);
+                            ng.gain.exponentialRampToValueAtTime(0.02, audioCtx.currentTime + 6);
+                            no.connect(ng);
+                            ng.connect(audioCtx.destination);
+                            no.start(audioCtx.currentTime);
+                            no.stop(audioCtx.currentTime + 6);
                             setTimeout(loopDrone, 5000 + Math.random() * 4000);
-                        } catch (e) {
-                            // ignore
-                        }
+                        } catch (_) {}
                     }
-
                     setTimeout(loopDrone, 2000);
-                    useWebAudio = true;
                     isPlaying = true;
-                    console.log('🎵 Web Audio drone playing');
-                } catch (e) {
-                    console.warn('⚠️ Audio not available');
-                }
+                    console.log('🎵 WebAudio drone');
+                } catch (_) {}
             }
 
-            // Try to play on user interaction
-            document.addEventListener('click', function audioInit() {
+            document.addEventListener('click', function() {
                 if (!isPlaying) {
-                    if (audioCtx && audioCtx.state === 'suspended') {
-                        audioCtx.resume();
-                    }
+                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
                     playHTML5Audio();
                 }
             }, { once: false });
 
-            // Also try on touch
-            document.addEventListener('touchstart', function audioInit() {
+            document.addEventListener('touchstart', function() {
                 if (!isPlaying) {
-                    if (audioCtx && audioCtx.state === 'suspended') {
-                        audioCtx.resume();
-                    }
+                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
                     playHTML5Audio();
                 }
             }, { once: false });
 
-            // Start automatically after overlay click
             document.getElementById('enterBtn').addEventListener('click', function() {
                 setTimeout(() => {
                     if (!isPlaying) {
-                        if (audioCtx && audioCtx.state === 'suspended') {
-                            audioCtx.resume();
-                        }
+                        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
                         playHTML5Audio();
                     }
                 }, 300);
             });
 
-            // Expose controls
             window.__audio = {
                 play: playHTML5Audio,
                 stop: function() {
                     audio.pause();
                     audio.currentTime = 0;
-                    if (oscillator) {
-                        try { oscillator.stop(); } catch (e) {}
-                    }
+                    if (oscillator) { try { oscillator.stop(); } catch (_) {} }
                     isPlaying = false;
                 }
             };
         })();
 
         // ============================================================
-        // 2. JUMPSCARE SYSTEM
+        // 2. JUMPSCARE
         // ============================================================
         (function initJumpscare() {
             const container = document.getElementById('jumpscare');
@@ -1102,26 +1043,14 @@
             let isScared = false;
             let timeoutId = null;
 
-            function triggerJumpscare() {
+            function trigger() {
                 if (isScared) return;
                 isScared = true;
-
-                // Show
                 container.classList.add('show');
-
-                // Play sound
                 sound.volume = 0.5;
-                const playPromise = sound.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {});
-                }
-
-                // Vibrate on mobile
-                if (navigator.vibrate) {
-                    navigator.vibrate([200, 100, 200]);
-                }
-
-                // Hide after animation
+                const p = sound.play();
+                if (p !== undefined) p.catch(() => {});
+                if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
                 clearTimeout(timeoutId);
                 timeoutId = setTimeout(() => {
                     container.classList.remove('show');
@@ -1129,60 +1058,46 @@
                 }, 1600);
             }
 
-            // Trigger randomly between 15–40 seconds after page load
-            let firstTrigger = true;
+            let first = true;
 
-            function scheduleJumpscare() {
-                const delay = firstTrigger ? 12000 + Math.random() * 15000 : 18000 + Math.random() * 30000;
-                firstTrigger = false;
+            function schedule() {
+                const delay = first ? 12000 + Math.random() * 15000 : 18000 + Math.random() * 30000;
+                first = false;
                 timeoutId = setTimeout(() => {
-                    if (!isScared) {
-                        triggerJumpscare();
-                    }
-                    scheduleJumpscare();
+                    if (!isScared) trigger();
+                    schedule();
                 }, delay);
             }
 
-            // Start after overlay is dismissed
             document.getElementById('enterBtn').addEventListener('click', function() {
-                setTimeout(scheduleJumpscare, 4000);
+                setTimeout(schedule, 4000);
             });
 
-            // Also trigger on extreme mouse movement (creepy)
-            let mouseMoveCount = 0;
-            document.addEventListener('mousemove', function(e) {
-                mouseMoveCount++;
-                if (mouseMoveCount > 50 && Math.random() < 0.005 && !isScared) {
-                    triggerJumpscare();
-                    mouseMoveCount = 0;
-                }
-                if (mouseMoveCount > 200) mouseMoveCount = 0;
+            let mmc = 0;
+            document.addEventListener('mousemove', function() {
+                mmc++;
+                if (mmc > 50 && Math.random() < 0.005 && !isScared) { trigger();
+                    mmc = 0; }
+                if (mmc > 200) mmc = 0;
             });
 
-            // Manual trigger for testing (hidden)
-            window.__triggerJumpscare = triggerJumpscare;
+            window.__triggerJumpscare = trigger;
         })();
 
         // ============================================================
         // 3. CONTACT TOGGLE
         // ============================================================
         document.getElementById('contactToggle').addEventListener('click', function() {
-            const box = document.getElementById('contactBox');
-            box.classList.toggle('show');
+            document.getElementById('contactBox').classList.toggle('show');
         });
 
         // ============================================================
-        // 4. OVERLAY / ENTRY
+        // 4. OVERLAY
         // ============================================================
         document.getElementById('enterBtn').addEventListener('click', function() {
-            const overlay = document.getElementById('overlay');
-            overlay.classList.add('hidden');
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 1200);
-
-            // Start the music (already handled)
-            // Start the background horror animation
+            const ov = document.getElementById('overlay');
+            ov.classList.add('hidden');
+            setTimeout(() => { ov.style.display = 'none'; }, 1200);
         });
 
         // ============================================================
@@ -1202,7 +1117,6 @@
 
             const particles = [];
             const COUNT = 160;
-
             for (let i = 0; i < COUNT; i++) {
                 particles.push({
                     x: Math.random() * W,
@@ -1215,7 +1129,6 @@
                 });
             }
 
-            // Extra creepy "eye" particles
             const eyes = [];
             for (let i = 0; i < 6; i++) {
                 eyes.push({
@@ -1238,29 +1151,22 @@
             function draw() {
                 ctx.clearRect(0, 0, W, H);
 
-                // Draw particles
                 for (const p of particles) {
                     p.x += p.vx;
                     p.y += p.vy;
-
                     if (p.x < 0 || p.x > W) p.vx *= -1;
                     if (p.y < 0 || p.y > H) p.vy *= -1;
 
-                    // Slight attraction to mouse (creepy following)
-                    const dx = mouseX - p.x;
-                    const dy = mouseY - p.y;
+                    const dx = mouseX - p.x,
+                        dy = mouseY - p.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < 200) {
                         p.vx += dx * 0.0002;
                         p.vy += dy * 0.0002;
                     }
-
-                    // Clamp speed
                     const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-                    if (spd > 1.2) {
-                        p.vx = (p.vx / spd) * 1.2;
-                        p.vy = (p.vy / spd) * 1.2;
-                    }
+                    if (spd > 1.2) { p.vx = (p.vx / spd) * 1.2;
+                        p.vy = (p.vy / spd) * 1.2; }
 
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -1269,7 +1175,6 @@
                     ctx.fill();
                     ctx.globalAlpha = 1;
 
-                    // Glow
                     const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
                     grad.addColorStop(0, 'rgba(255,0,0,0.05)');
                     grad.addColorStop(1, 'rgba(255,0,0,0)');
@@ -1279,15 +1184,12 @@
                     ctx.fill();
                 }
 
-                // Draw "eyes"
                 for (const eye of eyes) {
                     eye.angle += eye.speed;
                     eye.pulse = 0.8 + 0.2 * Math.sin(Date.now() * 0.002 + eye.x);
-
                     const ex = eye.x + Math.sin(eye.angle) * 30;
                     const ey = eye.y + Math.cos(eye.angle * 0.7) * 20;
 
-                    // Eye white
                     ctx.beginPath();
                     ctx.ellipse(ex, ey, eye.r, eye.r * 1.2, 0, 0, Math.PI * 2);
                     ctx.fillStyle = 'rgba(255,255,255,0.08)';
@@ -1296,9 +1198,8 @@
                     ctx.lineWidth = 1;
                     ctx.stroke();
 
-                    // Pupil (follows mouse slightly)
-                    const dx = mouseX - ex;
-                    const dy = mouseY - ey;
+                    const dx = mouseX - ex,
+                        dy = mouseY - ey;
                     const d = Math.sqrt(dx * dx + dy * dy) || 1;
                     const px = ex + (dx / d) * eye.r * 0.3;
                     const py = ey + (dy / d) * eye.r * 0.3;
@@ -1308,7 +1209,6 @@
                     ctx.fillStyle = `rgba(255,0,0,${0.3 + 0.2 * eye.pulse})`;
                     ctx.fill();
 
-                    // Red glow around eye
                     const grad = ctx.createRadialGradient(ex, ey, 0, ex, ey, eye.r * 2.5);
                     grad.addColorStop(0, 'rgba(255,0,0,0.04)');
                     grad.addColorStop(1, 'rgba(255,0,0,0)');
@@ -1317,14 +1217,12 @@
                     ctx.arc(ex, ey, eye.r * 2.5, 0, Math.PI * 2);
                     ctx.fill();
 
-                    // Move eyes slowly
                     eye.x += Math.sin(eye.angle * 0.5) * 0.1;
                     eye.y += Math.cos(eye.angle * 0.3) * 0.1;
                     if (eye.x < 0 || eye.x > W) eye.x = Math.random() * W;
                     if (eye.y < 0 || eye.y > H) eye.y = Math.random() * H;
                 }
 
-                // Draw connecting lines between nearby particles (creepy web)
                 ctx.strokeStyle = 'rgba(255,0,0,0.04)';
                 ctx.lineWidth = 0.5;
                 for (let i = 0; i < particles.length; i++) {
@@ -1348,7 +1246,7 @@
         })();
 
         // ============================================================
-        // 6. VISITOR COUNTER (creepy)
+        // 6. VISITOR COUNTER
         // ============================================================
         (function counter() {
             const el = document.getElementById('visitor-count');
@@ -1356,7 +1254,6 @@
             setInterval(() => {
                 count += Math.floor(Math.random() * 7) + 1;
                 el.textContent = count.toLocaleString();
-                // Occasionally flash red
                 if (Math.random() < 0.02) {
                     el.style.color = '#ff0000';
                     el.style.textShadow = '0 0 60px #ff0000';
@@ -1369,7 +1266,7 @@
         })();
 
         // ============================================================
-        // 7. SCREEN FLICKER (subtle horror)
+        // 7. SCREEN FLICKER
         // ============================================================
         (function flicker() {
             const overlay = document.getElementById('glitch-overlay');
@@ -1386,31 +1283,25 @@
         })();
 
         // ============================================================
-        // 8. CONSOLE WARNING (creepy)
+        // 8. CONSOLE WARNING
         // ============================================================
         console.log('%c☠ YOU ARE BEING WATCHED ☠', 'font-size:40px; color:#ff0000; font-weight:bold; text-shadow: 0 0 40px #ff0000;');
         console.log('%c⛧ This page contains horror elements. Proceed at your own risk. ⛧', 'font-size:18px; color:#ff4444;');
-
         console.log('%c👁️ YH.X1t.hk is always watching...', 'font-size:16px; color:#ff6666;');
 
         // ============================================================
-        // 9. KEYBOARD EASTER EGG (scary)
+        // 9. KEYBOARD EASTER EGG
         // ============================================================
-        let keySequence = [];
+        let keySeq = [];
         document.addEventListener('keydown', function(e) {
-            keySequence.push(e.key);
-            if (keySequence.length > 6) keySequence.shift();
-            if (keySequence.join('') === '666') {
+            keySeq.push(e.key);
+            if (keySeq.length > 6) keySeq.shift();
+            if (keySeq.join('') === '666') {
                 document.body.style.backgroundColor = '#ff0000';
                 document.body.style.transition = 'background 0.1s';
-                setTimeout(() => {
-                    document.body.style.backgroundColor = '';
-                }, 500);
-                keySequence = [];
-                // Trigger jumpscare
-                if (window.__triggerJumpscare) {
-                    setTimeout(window.__triggerJumpscare, 200);
-                }
+                setTimeout(() => { document.body.style.backgroundColor = ''; }, 500);
+                keySeq = [];
+                if (window.__triggerJumpscare) setTimeout(window.__triggerJumpscare, 200);
             }
         });
 
@@ -1418,4 +1309,4 @@
     </script>
 
 </body>
-    </html>
+</html>
