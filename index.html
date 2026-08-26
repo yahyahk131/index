@@ -1,17 +1,39 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>☠️ YH.X1t.hk — THE HORROR</title>
-
-    <!-- ===== FONTS & ICONS ===== -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👁️ YH.X1t.hk — SENTINEL SURVEILLANCE 👁️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         /* ============================================================
-                   RESET & BASE
-                   ============================================================ */
+           المتغيرات العامة
+           ============================================================ */
+        :root {
+            --blood: #8b0000;
+            --dark-blood: #3a0000;
+            --bright-blood: #ff1a1a;
+            --glow-red: #ff4444;
+            --pale: #d4c5a0;
+            --dark: #0a0000;
+            --darker: #050000;
+            --smoke: rgba(60,0,0,0.5);
+            --eye-glow: #ff6600;
+            --teeth: #f0e6d3;
+            --cyan: #00ffff;
+            --magenta: #ff00ff;
+            /* SENTINEL variables */
+            --sentinel-bg: #0a0a0a;
+            --sentinel-border: #1a1a1a;
+            --sentinel-text: #e0e0e0;
+            --sentinel-accent: #2196f3;
+            --sentinel-error: #ff5252;
+            --sentinel-success: #4caf50;
+            --sentinel-warning: #ff9800;
+            --sentinel-glow: #00e5ff;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -19,703 +41,609 @@
         }
 
         body {
-            background: #0a0000;
-            font-family: 'Courier New', monospace;
-            color: #ff1a1a;
-            text-align: center;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="%23ff0000" stroke-width="2"/><circle cx="16" cy="16" r="6" fill="%23ff0000" opacity="0.6"/><circle cx="16" cy="16" r="2" fill="%23ffffff"/></svg>') 16 16, auto;
+            background: var(--darker);
+            font-family: 'Cairo','Amiri','Courier New',monospace;
+            color: var(--pale);
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: none;
+            position: relative;
+            animation: bodyFlicker 8s infinite;
             user-select: none;
         }
 
-        /* ============================================================
-                   OVERLAY (ENTRY)
-                   ============================================================ */
-        #overlay {
+        @keyframes bodyFlicker {
+            0%,100% { background: var(--darker); }
+            3% { background: #0f0000; }
+            6% { background: var(--darker); }
+            52% { background: #080000; }
+            54% { background: var(--darker); }
+            55% { background: #0d0000; }
+            56% { background: var(--darker); }
+            80% { background: #060000; }
+            82% { background: var(--darker); }
+        }
+
+        /* ===== CUSTOM CURSOR ===== */
+        .custom-cursor {
             position: fixed;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--bright-blood);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%,-50%);
+            transition: width .2s,height .2s,border-color .3s;
+            animation: cursorPulse 1.5s infinite;
+            box-shadow: 0 0 20px rgba(255,0,0,.6), inset 0 0 15px rgba(255,0,0,.3);
+        }
+        .custom-cursor-dot {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: var(--bright-blood);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%,-50%);
+            box-shadow: 0 0 15px var(--bright-blood),0 0 30px rgba(255,0,0,.8);
+        }
+        @keyframes cursorPulse {
+            0%,100% { box-shadow: 0 0 20px rgba(255,0,0,.6),inset 0 0 15px rgba(255,0,0,.3); }
+            50% { box-shadow: 0 0 35px rgba(255,0,0,.9),inset 0 0 25px rgba(255,0,0,.5); }
+        }
+
+        /* ===== BLOOD DRIPS ===== */
+        .blood-drip-top { position:fixed; top:0; left:0; right:0; height:100%; pointer-events:none; z-index:9998; overflow:hidden; }
+        .blood-drip-top::before,.blood-drip-top::after {
+            content:''; position:absolute; top:-20px; width:8px; height:0;
+            background:linear-gradient(to bottom,#8b0000,#ff1a1a,#4a0000);
+            border-radius:0 0 10px 10px; animation:dripDown 4s ease-in-out infinite;
+            box-shadow:0 0 15px rgba(255,0,0,.7);
+        }
+        .blood-drip-top::before { left:15%; animation-delay:0s; animation-duration:3.5s; }
+        .blood-drip-top::after { left:70%; animation-delay:1.8s; animation-duration:4.2s; width:5px; }
+        .blood-drip-extra1,.blood-drip-extra2,.blood-drip-extra3 {
+            position:fixed; top:-20px; width:6px; height:0;
+            background:linear-gradient(to bottom,#6b0000,#cc1111,#3a0000);
+            border-radius:0 0 8px 8px; pointer-events:none; z-index:9998;
+            box-shadow:0 0 12px rgba(255,0,0,.5);
+        }
+        .blood-drip-extra1 { left:35%; animation:dripDown 5s ease-in-out infinite .7s; }
+        .blood-drip-extra2 { left:55%; animation:dripDown 3.8s ease-in-out infinite 2.5s; width:4px; }
+        .blood-drip-extra3 { left:85%; animation:dripDown 4.6s ease-in-out infinite 1.2s; width:7px; }
+        @keyframes dripDown {
+            0%{height:0;opacity:0} 10%{opacity:1} 60%{height:200px;opacity:1}
+            80%{height:260px;opacity:.7} 90%{height:300px;opacity:.3} 100%{height:350px;opacity:0}
+        }
+
+        /* ===== VIGNETTE ===== */
+        .vignette {
+            position:fixed; top:0; left:0; right:0; bottom:0; pointer-events:none; z-index:9996;
+            background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.9) 85%,rgba(0,0,0,.98) 100%);
+            animation:vignettePulse 4s ease-in-out infinite;
+        }
+        @keyframes vignettePulse {
+            0%,100%{background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.9) 85%,rgba(0,0,0,.98) 100%)}
+            50%{background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.95) 80%,rgba(0,0,0,1) 95%)}
+        }
+
+        /* ===== FLOATING GHOSTS ===== */
+        .ghost { position:fixed; pointer-events:none; z-index:9995; font-size:40px; opacity:0; animation:floatGhost 10s ease-in-out infinite; filter:blur(1px); text-shadow:0 0 20px rgba(255,255,255,.5),0 0 40px rgba(200,200,255,.3); }
+        .ghost:nth-child(1){top:15%;left:5%;animation-delay:0s;animation-duration:12s}
+        .ghost:nth-child(2){top:40%;right:8%;animation-delay:3s;animation-duration:15s;font-size:30px}
+        .ghost:nth-child(3){top:70%;left:15%;animation-delay:6s;animation-duration:11s;font-size:50px}
+        .ghost:nth-child(4){top:25%;right:25%;animation-delay:2s;animation-duration:14s;font-size:25px}
+        .ghost:nth-child(5){top:80%;right:10%;animation-delay:8s;animation-duration:13s;font-size:35px}
+        @keyframes floatGhost {
+            0%{opacity:0;transform:translateY(30px) translateX(0) scale(.8)}
+            15%{opacity:.6;transform:translateY(0) translateX(10px) scale(1)}
+            30%{opacity:.8;transform:translateY(-20px) translateX(-10px) scale(1.1)}
+            50%{opacity:.5;transform:translateY(-40px) translateX(15px) scale(.9)}
+            70%{opacity:.7;transform:translateY(-15px) translateX(-20px) scale(1.05)}
+            85%{opacity:.3;transform:translateY(10px) translateX(5px) scale(.85)}
+            100%{opacity:0;transform:translateY(30px) translateX(0) scale(.7)}
+        }
+
+        /* ===== FOG ===== */
+        .fog {
+            position:fixed; top:0; left:0; right:0; bottom:0; pointer-events:none; z-index:9994;
+            background:radial-gradient(ellipse at 20% 50%,rgba(60,0,0,.3) 0%,transparent 50%),
+                       radial-gradient(ellipse at 80% 30%,rgba(40,0,0,.25) 0%,transparent 45%),
+                       radial-gradient(ellipse at 50% 80%,rgba(50,0,0,.2) 0%,transparent 40%);
+            animation:fogMove 20s ease-in-out infinite;
+        }
+        @keyframes fogMove {
+            0%,100%{background-position:0% 0%,100% 100%,50% 50%;opacity:.7}
+            25%{background-position:10% 20%,80% 70%,60% 40%;opacity:.9}
+            50%{background-position:20% 10%,70% 80%,40% 60%;opacity:.6}
+            75%{background-position:5% 30%,90% 50%,70% 30%;opacity:.85}
+        }
+
+        /* ===== ENTRY OVERLAY ===== */
+        #overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,.96); z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; transition:opacity 1.2s ease; text-align:center; cursor:none; }
+        #overlay.hidden{opacity:0;pointer-events:none}
+        #overlay h1{font-size:clamp(2.5rem,8vw,5rem);color:#f00;text-shadow:0 0 40px #f00,0 0 80px #f006;animation:glitchText 1.8s infinite;letter-spacing:8px;font-family:'Nosifer',cursive}
+        #overlay p{color:#f66;font-size:1.4rem;margin-top:18px;animation:pulse 1.2s infinite alternate;font-family:'Creepster',cursive;letter-spacing:2px}
+        #overlay .enter-btn{margin-top:40px;padding:16px 50px;background:transparent;border:2px solid #f00;color:#f00;font-size:1.6rem;font-weight:bold;border-radius:8px;cursor:pointer;transition:all .3s;text-shadow:0 0 20px #f00;box-shadow:0 0 30px #f003;font-family:'Nosifer',cursive;letter-spacing:4px;cursor:none}
+        #overlay .enter-btn:hover{background:#f00;color:#000;box-shadow:0 0 80px #f00;transform:scale(1.1)}
+        @keyframes glitchText {
+            0%,20%,40%,60%,80%,100%{transform:skew(0deg);opacity:1}
+            10%{transform:skew(3deg) translateX(4px);opacity:.8;text-shadow:0 0 60px #f00,4px 0 0 #0f0,-4px 0 0 #00f}
+            30%{transform:skew(-3deg) translateX(-4px);text-shadow:0 0 40px #f00}
+            50%{transform:skew(5deg) translateX(6px);text-shadow:0 0 80px #f00,6px 0 0 #0f0,-6px 0 0 #00f}
+            70%{transform:skew(-5deg) translateX(-6px)}
+            90%{transform:skew(2deg) translateX(2px);text-shadow:0 0 50px #f00}
+        }
+        @keyframes pulse { 0%{opacity:.4;text-shadow:0 0 10px #f00} 100%{opacity:1;text-shadow:0 0 40px #f00} }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container { max-width:1200px; margin:0 auto; padding:30px 20px 80px; position:relative; z-index:10; }
+
+        /* ===== GLITCH HEADER ===== */
+        .glitch-wrapper { text-align:center; margin-bottom:40px; position:relative; }
+        .glitch-title {
+            font-family:'Nosifer',cursive; font-size:clamp(1.8rem,5vw,3.5rem); color:var(--bright-blood);
+            text-shadow:0 0 30px rgba(255,0,0,.8),0 0 60px rgba(255,0,0,.5),0 0 100px rgba(255,0,0,.3);
+            position:relative; display:inline-block; animation:titleGlow 2s ease-in-out infinite,titleFlicker 3s infinite; letter-spacing:3px;
+        }
+        .glitch-title::before,.glitch-title::after { content:attr(data-text); position:absolute; top:0; left:0; width:100%; height:100%; opacity:.7; }
+        .glitch-title::before { color:var(--cyan); z-index:-1; animation:glitchShift1 2s infinite linear alternate-reverse; text-shadow:0 0 20px rgba(0,255,255,.5); }
+        .glitch-title::after { color:var(--magenta); z-index:-2; animation:glitchShift2 3s infinite linear alternate-reverse; text-shadow:0 0 20px rgba(255,0,255,.5); }
+        @keyframes glitchShift1 { 0%{transform:translate(-3px,-2px);clip-path:inset(10% 0 60% 0)} 20%{transform:translate(3px,2px);clip-path:inset(40% 0 30% 0)} 40%{transform:translate(-2px,3px);clip-path:inset(70% 0 5% 0)} 60%{transform:translate(4px,-3px);clip-path:inset(20% 0 50% 0)} 80%{transform:translate(-4px,1px);clip-path:inset(55% 0 20% 0)} 100%{transform:translate(2px,-1px);clip-path:inset(80% 0 10% 0)} }
+        @keyframes glitchShift2 { 0%{transform:translate(3px,2px);clip-path:inset(30% 0 40% 0)} 25%{transform:translate(-3px,-3px);clip-path:inset(60% 0 15% 0)} 50%{transform:translate(2px,4px);clip-path:inset(10% 0 70% 0)} 75%{transform:translate(-2px,-1px);clip-path:inset(45% 0 35% 0)} 100%{transform:translate(4px,-2px);clip-path:inset(75% 0 5% 0)} }
+        @keyframes titleGlow { 0%,100%{text-shadow:0 0 30px rgba(255,0,0,.8),0 0 60px rgba(255,0,0,.5),0 0 100px rgba(255,0,0,.3)} 50%{text-shadow:0 0 50px rgba(255,0,0,1),0 0 100px rgba(255,0,0,.7),0 0 150px rgba(255,0,0,.4)} }
+        @keyframes titleFlicker { 0%,100%{opacity:1} 3%{opacity:.3} 6%{opacity:1} 7%{opacity:.6} 8%{opacity:1} 50%{opacity:.9} 51%{opacity:1} 52%{opacity:.5} 53%{opacity:1} }
+        .subtitle { font-family:'Creepster',cursive; font-size:clamp(.9rem,2.5vw,1.4rem); color:#c33; text-shadow:0 0 20px rgba(255,0,0,.6); margin-top:10px; letter-spacing:2px; animation:subtitleFade 3s ease-in-out infinite; }
+        @keyframes subtitleFade { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+        /* ===== PROFILE ===== */
+        .profile-section { display:flex; justify-content:center; margin-bottom:30px; position:relative; }
+        .profile-image-wrapper { position:relative; width:200px; height:200px; border-radius:50%; overflow:hidden; border:4px solid var(--blood); box-shadow:0 0 50px rgba(255,0,0,.6),0 0 100px rgba(255,0,0,.3),inset 0 0 50px rgba(0,0,0,.8); animation:profilePulse 3s ease-in-out infinite; }
+        .profile-image-wrapper::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:conic-gradient(from 0deg,transparent,rgba(255,0,0,.3),transparent,rgba(255,0,0,.3),transparent); animation:rotateRing 6s linear infinite; z-index:2; pointer-events:none; }
+        .profile-image-wrapper::after { content:''; position:absolute; inset:10px; border-radius:50%; border:2px dashed rgba(255,0,0,.5); animation:rotateRing 8s linear infinite reverse; z-index:2; pointer-events:none; }
+        @keyframes rotateRing { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+        @keyframes profilePulse { 0%,100%{box-shadow:0 0 50px rgba(255,0,0,.6),0 0 100px rgba(255,0,0,.3),inset 0 0 50px rgba(0,0,0,.8)} 50%{box-shadow:0 0 80px rgba(255,0,0,.9),0 0 150px rgba(255,0,0,.5),inset 0 0 50px rgba(0,0,0,.9)} }
+        .profile-image-wrapper img { width:100%; height:100%; object-fit:cover; filter:grayscale(30%) contrast(130%) brightness(80%); animation:imgFlicker 4s infinite; }
+        @keyframes imgFlicker { 0%,100%{filter:grayscale(30%) contrast(130%) brightness(80%)} 10%{filter:grayscale(60%) contrast(160%) brightness(60%) hue-rotate(10deg)} 20%{filter:grayscale(30%) contrast(130%) brightness(80%)} 30%{filter:grayscale(50%) contrast(150%) brightness(70%)} 40%{filter:grayscale(30%) contrast(130%) brightness(80%)} 70%{filter:grayscale(40%) contrast(140%) brightness(75%) saturate(150%)} 80%{filter:grayscale(30%) contrast(130%) brightness(80%)} }
+
+        /* ===== EYES ===== */
+        .eyes-container { display:flex; justify-content:center; gap:35px; margin:25px 0; position:relative; z-index:5; }
+        .eye { width:70px; height:45px; background:#1a0000; border-radius:50%; position:relative; overflow:hidden; border:3px solid var(--blood); box-shadow:0 0 30px rgba(255,0,0,.5),inset 0 0 20px rgba(0,0,0,.9); animation:eyeBlink 4s infinite; }
+        .eye::before { content:''; position:absolute; top:50%; left:50%; width:22px; height:22px; background:radial-gradient(circle,#f30,#8b0000,#1a0000); border-radius:50%; transform:translate(calc(-50% + var(--pupil-x,0px)),calc(-50% + var(--pupil-y,0px))); box-shadow:0 0 20px rgba(255,50,0,.9),0 0 40px rgba(255,0,0,.5); transition:all .15s ease-out; animation:pupilGlow 2s infinite; }
+        .eye::after { content:''; position:absolute; top:20%; left:25%; width:7px; height:7px; background:rgba(255,255,255,.8); border-radius:50%; filter:blur(1px); }
+        @keyframes eyeBlink { 0%,45%,50%,100%{transform:scaleY(1)} 47%,48%{transform:scaleY(.05)} }
+        @keyframes pupilGlow { 0%,100%{box-shadow:0 0 20px rgba(255,50,0,.9),0 0 40px rgba(255,0,0,.5)} 50%{box-shadow:0 0 35px rgba(255,80,0,1),0 0 70px rgba(255,0,0,.7)} }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title { font-family:'Creepster',cursive; font-size:clamp(1.4rem,3.5vw,2.2rem); color:var(--bright-blood); text-align:center; margin:40px 0 25px; text-shadow:0 0 25px rgba(255,0,0,.7),0 0 50px rgba(255,0,0,.4); letter-spacing:2px; position:relative; animation:titleGlow 3s ease-in-out infinite; }
+        .section-title::after { content:''; display:block; width:150px; height:3px; background:linear-gradient(to right,transparent,var(--bright-blood),transparent); margin:10px auto 0; border-radius:50%; box-shadow:0 0 20px rgba(255,0,0,.8); }
+        .bio-text { color:#c88; font-size:.95rem; line-height:1.9; max-width:700px; margin:10px auto; padding:0 10px; text-shadow:0 0 10px #ff000022; text-align:center; }
+        .bio-text strong { color:#f33; }
+        .counter-box { margin:20px 0 16px; padding:10px 24px; border:1px solid #ff000044; border-radius:12px; background:rgba(255,0,0,.05); display:inline-block; font-size:1.1rem; color:#f66; letter-spacing:2px; font-family:'Creepster',cursive; width:100%; text-align:center; }
+        .counter-box span { color:#f00; font-weight:bold; font-size:1.6rem; text-shadow:0 0 30px #f00; animation:pulse 1.4s infinite alternate; }
+        .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin:25px 0; }
+        .skill-card { background:rgba(20,0,0,.8); border:2px solid var(--blood); border-radius:15px; padding:20px 15px; text-align:center; transition:all .4s ease; position:relative; overflow:hidden; cursor:pointer; box-shadow:0 5px 25px rgba(0,0,0,.7),inset 0 0 30px rgba(60,0,0,.4); }
+        .skill-card::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,0,0,.2),transparent); transition:left .6s ease; }
+        .skill-card:hover::before { left:100%; }
+        .skill-card:hover { transform:translateY(-8px) scale(1.03); border-color:var(--bright-blood); box-shadow:0 15px 40px rgba(255,0,0,.5),0 0 60px rgba(255,0,0,.3),inset 0 0 30px rgba(60,0,0,.6); }
+        .skill-icon { font-size:40px; margin-bottom:10px; filter:drop-shadow(0 0 15px rgba(255,0,0,.6)); animation:iconFloat 3s ease-in-out infinite; }
+        @keyframes iconFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .skill-name { font-family:'Creepster',cursive; font-size:1rem; color:#f66; letter-spacing:1px; text-shadow:0 0 10px rgba(255,0,0,.5); }
+        .tech-stack { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:15px; padding:10px; }
+        .tech-stack img { border-radius:6px; transition:all .3s; filter:grayscale(.5) brightness(.8); cursor:pointer; }
+        .tech-stack img:hover { transform:scale(1.15) rotate(-2deg); filter:grayscale(0) brightness(1.2); box-shadow:0 0 30px #ff000066; }
+        .gif-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:15px; margin:25px 0; }
+        .gif-item { position:relative; border-radius:12px; overflow:hidden; border:3px solid var(--dark-blood); box-shadow:0 5px 25px rgba(0,0,0,.8),0 0 40px rgba(60,0,0,.4); transition:all .5s ease; aspect-ratio:1; background:#050000; }
+        .gif-item:hover { border-color:var(--bright-blood); box-shadow:0 10px 40px rgba(255,0,0,.6),0 0 80px rgba(255,0,0,.3); transform:scale(1.05); z-index:5; }
+        .gif-item img { width:100%; height:100%; object-fit:cover; filter:brightness(80%) contrast(120%) saturate(130%); transition:filter .5s ease; }
+        .gif-item:hover img { filter:brightness(100%) contrast(140%) saturate(160%); }
+        .gif-overlay { position:absolute; bottom:0; left:0; right:0; padding:12px; background:linear-gradient(to top,rgba(0,0,0,.9),transparent); font-family:'Creepster',cursive; font-size:.8rem; color:#f44; letter-spacing:1px; text-shadow:0 0 10px rgba(255,0,0,.6); transform:translateY(100%); transition:transform .4s ease; }
+        .gif-item:hover .gif-overlay { transform:translateY(0); }
+        .contact-section { margin-top:40px; padding:30px 25px; background:rgba(10,0,0,.9); border:2px solid var(--blood); border-radius:20px; position:relative; overflow:hidden; box-shadow:0 0 60px rgba(255,0,0,.3),inset 0 0 50px rgba(40,0,0,.5); }
+        .contact-section::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(to right,transparent,var(--bright-blood),var(--blood),var(--bright-blood),transparent); animation:contactBorder 3s ease-in-out infinite; }
+        @keyframes contactBorder { 0%,100%{opacity:.6} 50%{opacity:1} }
+        .contact-form { display:flex; flex-direction:column; gap:18px; max-width:500px; margin:0 auto; }
+        .form-group { position:relative; }
+        .form-group label { display:block; margin-bottom:8px; font-family:'Creepster',cursive; font-size:1rem; color:#c44; letter-spacing:1px; text-shadow:0 0 10px rgba(255,0,0,.4); }
+        .form-group input,.form-group textarea,.form-group select { width:100%; padding:14px 16px; background:rgba(30,0,0,.8); border:2px solid var(--dark-blood); border-radius:10px; color:var(--pale); font-family:'Cairo',sans-serif; font-size:.95rem; transition:all .4s ease; outline:none; box-shadow:inset 0 0 20px rgba(0,0,0,.6); cursor:none; }
+        .form-group input:focus,.form-group textarea:focus,.form-group select:focus { border-color:var(--bright-blood); box-shadow:0 0 25px rgba(255,0,0,.4),inset 0 0 20px rgba(0,0,0,.6); background:rgba(40,0,0,.9); }
+        .form-group textarea { min-height:100px; resize:vertical; }
+        .form-group select option { background:#1a0000; color:var(--pale); }
+        .submit-btn { padding:16px 35px; background:linear-gradient(135deg,#3a0000,#8b0000,#3a0000); border:2px solid var(--bright-blood); border-radius:12px; color:#fcc; font-family:'Creepster',cursive; font-size:1.2rem; letter-spacing:2px; cursor:pointer; transition:all .5s ease; position:relative; overflow:hidden; text-shadow:0 0 15px rgba(255,0,0,.7); box-shadow:0 5px 25px rgba(255,0,0,.4),0 0 50px rgba(255,0,0,.2); cursor:none; }
+        .submit-btn::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:conic-gradient(from 0deg,transparent,rgba(255,0,0,.3),transparent,rgba(255,0,0,.3),transparent); animation:rotateRing 4s linear infinite; z-index:-1; }
+        .submit-btn:hover { transform:scale(1.05); box-shadow:0 10px 40px rgba(255,0,0,.7),0 0 80px rgba(255,0,0,.4); background:linear-gradient(135deg,#5a0000,#cc1111,#5a0000); letter-spacing:4px; }
+        .contact-links { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin:25px 0 10px; position:relative; z-index:5; }
+        .badge { display:flex; align-items:center; gap:10px; padding:12px 22px; border-radius:50px; text-decoration:none; font-family:'Creepster',cursive; font-size:.9rem; letter-spacing:1.5px; transition:all .4s ease; position:relative; overflow:hidden; border:2px solid var(--blood); box-shadow:0 0 20px rgba(255,0,0,.3); animation:badgePulse 2.5s ease-in-out infinite; cursor:none; }
+        .badge i { font-size:1.3rem; filter:drop-shadow(0 0 8px rgba(255,0,0,.7)); }
+        .badge.github { background:rgba(10,10,20,.9); color:#fff; border-color:#66a; box-shadow:0 0 20px rgba(100,100,200,.3); }
+        .badge.github:hover { background:#1a1a2e; border-color:#88c; box-shadow:0 0 40px rgba(150,150,255,.7); transform:translateY(-5px) scale(1.06); letter-spacing:3px; }
+        .badge.github i { filter:drop-shadow(0 0 8px rgba(200,200,255,.7)); }
+        .badge.facebook { background:rgba(10,0,30,.9); color:#69f; border-color:#36c; box-shadow:0 0 20px rgba(50,100,220,.3); }
+        .badge.facebook:hover { background:#0a0a2e; border-color:#69f; box-shadow:0 0 40px rgba(100,150,255,.7); transform:translateY(-5px) scale(1.06); letter-spacing:3px; }
+        .badge.facebook i { filter:drop-shadow(0 0 8px rgba(100,150,255,.7)); }
+        .badge.telegram { background:rgba(0,20,30,.9); color:#4cf; border-color:#29c; box-shadow:0 0 20px rgba(0,150,220,.3); }
+        .badge.telegram:hover { background:#0a1a2e; border-color:#4cf; box-shadow:0 0 40px rgba(50,200,255,.7); transform:translateY(-5px) scale(1.06); letter-spacing:3px; }
+        .badge.telegram i { filter:drop-shadow(0 0 8px rgba(50,200,255,.7)); }
+        .badge.instagram { background:rgba(30,0,10,.9); color:#f58; border-color:#c36; box-shadow:0 0 20px rgba(220,50,100,.3); }
+        .badge.instagram:hover { background:#2e0a1a; border-color:#f69; box-shadow:0 0 40px rgba(255,100,150,.7); transform:translateY(-5px) scale(1.06); letter-spacing:3px; }
+        .badge.instagram i { filter:drop-shadow(0 0 8px rgba(255,100,150,.7)); }
+        @keyframes badgePulse { 0%,100%{box-shadow:0 0 20px rgba(255,0,0,.3)} 50%{box-shadow:0 0 35px rgba(255,0,0,.55)} }
+        .social-links { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:25px 0; }
+        .social-link { width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(20,0,0,.8); border:2px solid var(--blood); text-decoration:none; font-size:24px; transition:all .4s ease; position:relative; box-shadow:0 0 20px rgba(255,0,0,.3); animation:socialPulse 2s ease-in-out infinite; cursor:none; }
+        .social-link:nth-child(2){animation-delay:.3s}.social-link:nth-child(3){animation-delay:.6s}.social-link:nth-child(4){animation-delay:.9s}
+        @keyframes socialPulse { 0%,100%{box-shadow:0 0 20px rgba(255,0,0,.3)} 50%{box-shadow:0 0 40px rgba(255,0,0,.6)} }
+        .social-link:hover { transform:translateY(-8px) scale(1.15); border-color:var(--bright-blood); box-shadow:0 10px 35px rgba(255,0,0,.7),0 0 60px rgba(255,0,0,.4); background:rgba(50,0,0,.9); }
+        .social-link.github-link{color:#fff;border-color:#55a;box-shadow:0 0 20px rgba(100,100,200,.4)}.social-link.github-link:hover{border-color:#99d;box-shadow:0 10px 35px rgba(150,150,255,.7)}
+        .social-link.facebook-link{color:#69f;border-color:#36c;box-shadow:0 0 20px rgba(50,100,220,.4)}.social-link.facebook-link:hover{border-color:#69f;box-shadow:0 10px 35px rgba(100,150,255,.7)}
+        .social-link.telegram-link{color:#4cf;border-color:#29c;box-shadow:0 0 20px rgba(0,150,220,.4)}.social-link.telegram-link:hover{border-color:#4cf;box-shadow:0 10px 35px rgba(50,200,255,.7)}
+        .social-link.instagram-link{color:#f58;border-color:#c36;box-shadow:0 0 20px rgba(220,50,100,.4)}.social-link.instagram-link:hover{border-color:#f69;box-shadow:0 10px 35px rgba(255,100,150,.7)}
+        .jump-scare-btn { display:block; margin:35px auto; padding:16px 40px; background:#1a0000; border:3px solid #f00; border-radius:15px; color:#f00; font-family:'Nosifer',cursive; font-size:1rem; cursor:pointer; letter-spacing:2px; transition:all .4s ease; box-shadow:0 0 30px rgba(255,0,0,.5),inset 0 0 20px rgba(255,0,0,.2); animation:jumpscareBtnPulse 1.5s infinite; position:relative; overflow:hidden; cursor:none; }
+        @keyframes jumpscareBtnPulse { 0%,100%{box-shadow:0 0 30px rgba(255,0,0,.5),inset 0 0 20px rgba(255,0,0,.2)} 50%{box-shadow:0 0 60px rgba(255,0,0,.9),inset 0 0 40px rgba(255,0,0,.4)} }
+        .jump-scare-btn:hover { background:#3a0000; transform:scale(1.08); letter-spacing:5px; box-shadow:0 0 70px rgba(255,0,0,1),inset 0 0 50px rgba(255,0,0,.5); }
+        .jump-scare-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:#000; z-index:100000; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .1s ease; }
+        .jump-scare-overlay.active { opacity:1; pointer-events:all; animation:shake .3s ease; }
+        .jump-scare-overlay img { max-width:90%; max-height:90%; object-fit:contain; border-radius:10px; box-shadow:0 0 100px rgba(255,0,0,.9); }
+        @keyframes shake { 0%,100%{transform:translate(0,0) rotate(0)} 10%{transform:translate(-10px,-5px) rotate(-2deg)} 20%{transform:translate(10px,5px) rotate(2deg)} 30%{transform:translate(-8px,3px) rotate(-1deg)} 40%{transform:translate(8px,-3px) rotate(1deg)} 50%{transform:translate(-5px,-8px) rotate(-3deg)} 60%{transform:translate(5px,8px) rotate(3deg)} 70%{transform:translate(-3px,5px) rotate(-2deg)} 80%{transform:translate(3px,-5px) rotate(2deg)} 90%{transform:translate(-2px,3px) rotate(-1deg)} }
+        .footer { text-align:center; padding:25px 15px; margin-top:40px; border-top:2px solid var(--dark-blood); position:relative; }
+        .footer::before { content:''; position:absolute; top:-2px; left:50%; transform:translateX(-50%); width:100px; height:3px; background:var(--bright-blood); box-shadow:0 0 20px rgba(255,0,0,.8); animation:footerLine 2s ease-in-out infinite; }
+        @keyframes footerLine { 0%,100%{width:100px;opacity:.6} 50%{width:200px;opacity:1} }
+        .footer-text { font-family:'Creepster',cursive; font-size:1rem; color:#a33; letter-spacing:2px; text-shadow:0 0 15px rgba(255,0,0,.5); animation:subtitleFade 4s ease-in-out infinite; }
+        .particle { position:fixed; width:4px; height:4px; background:var(--bright-blood); border-radius:50%; pointer-events:none; z-index:9993; box-shadow:0 0 10px rgba(255,0,0,.8); animation:fallDown linear infinite; }
+        @keyframes fallDown { 0%{transform:translateY(-10vh) translateX(0) rotate(0);opacity:1} 50%{opacity:.7} 100%{transform:translateY(110vh) translateX(50px) rotate(360deg);opacity:0} }
+        .sound-toggle { position:fixed; bottom:25px; right:25px; z-index:99997; width:48px; height:48px; border-radius:50%; background:rgba(20,0,0,.9); border:2px solid var(--blood); color:#f44; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px rgba(255,0,0,.5); transition:all .3s ease; cursor:none; }
+        .sound-toggle:hover { transform:scale(1.1); box-shadow:0 0 45px rgba(255,0,0,.8); }
+        .divider { width:60%; height:1px; margin:20px auto; background:linear-gradient(90deg,transparent,#ff000066,transparent); }
+        #bg-canvas { position:fixed; top:0; left:0; z-index:0; width:100vw; height:100vh; pointer-events:none; }
+        #glitch-overlay { position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9998; background:repeating-linear-gradient(0deg,rgba(255,0,0,.02) 0px,rgba(255,0,0,.02) 2px,transparent 2px,transparent 6px); animation:scanlines .08s linear infinite; }
+        @keyframes scanlines { 0%{transform:translateY(0)} 100%{transform:translateY(6px)} }
+        .hidden-message { position:fixed; bottom:10px; right:12px; font-size:.55rem; color:#ff000022; z-index:2; letter-spacing:1px; animation:pulse 4s infinite alternate; pointer-events:none; font-family:'Courier New',monospace; }
+
+        /* ============================================================
+           SENTINEL SURVEILLANCE SYSTEM STYLES
+           ============================================================ */
+        .security-system {
+            background: var(--sentinel-bg);
+            border: 2px solid var(--sentinel-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 0 50px rgba(0, 229, 255, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.7);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            color: var(--sentinel-text);
+            direction: ltr;
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+        }
+        .security-system::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.94);
-            z-index: 9999;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--sentinel-glow), transparent);
+            animation: sentinelTopBar 3s ease-in-out infinite;
+        }
+        @keyframes sentinelTopBar {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .system-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+        }
+        .system-title h1 {
+            font-size: 2rem;
+            letter-spacing: 6px;
+            color: var(--sentinel-glow);
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.7);
+            font-family: 'Share Tech Mono', monospace;
+            margin: 0;
+        }
+        .glitch-text {
+            animation: sentinelGlitch 3s infinite;
+            display: inline-block;
+        }
+        @keyframes sentinelGlitch {
+            0%, 100% { transform: none; opacity: 1; }
+            5% { transform: skewX(2deg); opacity: 0.8; text-shadow: -2px 0 #f0f, 2px 0 #0ff; }
+            10% { transform: skewX(-2deg); opacity: 1; }
+            15% { transform: translateX(2px); }
+            20% { transform: none; }
+            60% { opacity: 0.9; }
+            65% { transform: translateY(1px); }
+            70% { transform: none; }
+        }
+        .subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #aaa;
+        }
+        .status-alert {
+            color: var(--sentinel-error);
+            text-shadow: 0 0 10px rgba(255, 82, 82, 0.8);
+            animation: statusBlink 1.5s infinite;
+        }
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .status-panel {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .status-item {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 1.2s ease;
+            align-items: flex-end;
+            gap: 3px;
         }
-
-        #overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
+        .status-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #888;
         }
-
-        #overlay h1 {
-            font-size: 4.2rem;
-            color: #ff0000;
-            text-shadow: 0 0 40px #ff0000, 0 0 80px #ff000066;
-            animation: glitchText 1.8s infinite;
-            letter-spacing: 10px;
+        .status-value {
+            font-size: 1.1rem;
+            color: var(--sentinel-glow);
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+            letter-spacing: 1px;
         }
-
-        #overlay p {
-            color: #ff6666;
-            font-size: 1.4rem;
-            margin-top: 18px;
-            animation: pulse 1.2s infinite alternate;
+        .camera-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
         }
-
-        #overlay .enter-btn {
-            margin-top: 40px;
-            padding: 16px 50px;
-            background: transparent;
-            border: 2px solid #ff0000;
-            color: #ff0000;
-            font-size: 1.6rem;
-            font-weight: bold;
+        .camera-grid.two-per-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .camera-grid.single-column {
+            grid-template-columns: 1fr;
+        }
+        .camera-feed {
+            background: #050505;
+            border: 1px solid #222;
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-shadow: 0 0 20px #ff0000;
-            box-shadow: 0 0 30px #ff000033;
-            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
-
-        #overlay .enter-btn:hover {
-            background: #ff0000;
-            color: #000;
-            box-shadow: 0 0 80px #ff0000;
-            transform: scale(1.1);
+        .camera-feed:hover {
+            border-color: rgba(0, 229, 255, 0.5);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
         }
-
-        /* ============================================================
-                   GLITCH & PULSE KEYFRAMES
-                   ============================================================ */
-        @keyframes glitchText {
-            0%,
-            20%,
-            40%,
-            60%,
-            80%,
-            100% {
-                transform: skew(0deg);
-                opacity: 1;
-            }
-            10% {
-                transform: skew(3deg) translateX(4px);
-                opacity: 0.8;
-                text-shadow: 0 0 60px #ff0000, 4px 0 0 #00ff00, -4px 0 0 #0000ff;
-            }
-            30% {
-                transform: skew(-3deg) translateX(-4px);
-                text-shadow: 0 0 40px #ff0000;
-            }
-            50% {
-                transform: skew(5deg) translateX(6px);
-                text-shadow: 0 0 80px #ff0000, 6px 0 0 #00ff00, -6px 0 0 #0000ff;
-            }
-            70% {
-                transform: skew(-5deg) translateX(-6px);
-            }
-            90% {
-                transform: skew(2deg) translateX(2px);
-                text-shadow: 0 0 50px #ff0000;
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 0.4;
-                text-shadow: 0 0 10px #ff0000;
-            }
-            100% {
-                opacity: 1;
-                text-shadow: 0 0 40px #ff0000;
-            }
-        }
-
-        /* ============================================================
-                   CANVAS BACKGROUND
-                   ============================================================ */
-        #bg-canvas {
+        .camera-feed.fullscreen {
             position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            height: 90vh;
+            z-index: 100001;
+            border-color: var(--sentinel-glow);
+            box-shadow: 0 0 80px rgba(0, 229, 255, 0.8);
         }
-
-        /* ============================================================
-                   MAIN CARD
-                   ============================================================ */
-        .card {
+        .camera-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid #111;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        .camera-id {
+            color: #ccc;
+        }
+        .camera-status {
+            color: var(--sentinel-success);
+            text-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+        }
+        .camera-status.offline {
+            color: var(--sentinel-error);
+            text-shadow: 0 0 5px rgba(255, 82, 82, 0.7);
+        }
+        .camera-content {
             position: relative;
-            z-index: 1;
-            width: 92%;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 35px 30px 40px;
-            background: rgba(10, 0, 0, 0.88);
-            border: 1px solid #ff000044;
-            border-radius: 24px;
-            box-shadow: 0 0 40px #ff000033, inset 0 0 60px #ff000011;
-            backdrop-filter: blur(6px);
-            animation: cardFloat 5s ease-in-out infinite;
-            max-height: 92vh;
-            overflow-y: auto;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: #000;
         }
-
-        .card::-webkit-scrollbar {
-            width: 6px;
-        }
-        .card::-webkit-scrollbar-track {
-            background: #1a0000;
-        }
-        .card::-webkit-scrollbar-thumb {
-            background: #ff000066;
-            border-radius: 10px;
-        }
-
-        @keyframes cardFloat {
-            0%,
-            100% {
-                transform: translateY(0) scale(1);
-            }
-            50% {
-                transform: translateY(-10px) scale(1.005);
-            }
-        }
-
-        /* ============================================================
-                   PROFILE
-                   ============================================================ */
-        .profile-container {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 22px;
-        }
-
-        .profile-container img {
+        .camera-video {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
-            position: relative;
+            display: block;
+            filter: contrast(1.1) saturate(1.2);
+        }
+        .camera-video.color-mode {
+            filter: contrast(1.1) saturate(1.5) brightness(1.1);
+        }
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255, 255, 255, 0.03) 0px,
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 1px,
+                transparent 4px
+            );
+            animation: scanMove 8s linear infinite;
             z-index: 2;
-            border: 3px solid #ff000066;
-            filter: grayscale(0.4) contrast(1.2);
+            opacity: 0.5;
         }
-
-        .profile-container::before {
-            content: '';
+        @keyframes scanMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100%); }
+        }
+        .noise-overlay {
             position: absolute;
-            top: -10px;
-            left: -10px;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: conic-gradient(#ff0000, #ff4444, #880000, #ff0000, #ff4444, #880000, #ff0000);
-            animation: spinBlood 3s linear infinite;
-            z-index: 1;
-            opacity: 0.7;
-            filter: blur(2px);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23n)" opacity="0.5"/></svg>');
+            opacity: 0.05;
+            z-index: 3;
+            mix-blend-mode: overlay;
         }
-
-        @keyframes spinBlood {
-            0% {
-                transform: rotate(0deg) scale(1);
-            }
-            50% {
-                transform: rotate(180deg) scale(1.1);
-            }
-            100% {
-                transform: rotate(360deg) scale(1);
-            }
-        }
-
-        /* ============================================================
-                   TYPOGRAPHY
-                   ============================================================ */
-        h1 {
-            font-size: 2.8rem;
-            text-shadow: 0 0 30px #ff0000, 0 0 60px #ff000044;
-            letter-spacing: 4px;
-            animation: glitchText 2.4s infinite;
-            word-break: break-word;
-        }
-
-        h2 {
-            color: #ff4444;
-            text-shadow: 0 0 20px #ff000066;
-            margin: 24px 0 12px;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            border-bottom: 1px solid #ff000033;
-            padding-bottom: 8px;
-        }
-
-        .sub-title {
-            color: #ff6666;
-            font-size: 1.2rem;
-            letter-spacing: 6px;
-            animation: pulse 2s infinite alternate;
-            margin-bottom: 8px;
-        }
-
-        .bio-text {
-            color: #cc8888;
-            font-size: 1rem;
-            line-height: 1.9;
-            max-width: 700px;
-            margin: 10px auto;
-            padding: 0 10px;
-            text-shadow: 0 0 10px #ff000022;
-        }
-
-        .bio-text strong {
-            color: #ff3333;
-        }
-
-        /* ============================================================
-                   VISITOR COUNTER
-                   ============================================================ */
-        .counter-box {
-            margin: 20px 0 16px;
-            padding: 10px 24px;
-            border: 1px solid #ff000044;
-            border-radius: 12px;
-            background: rgba(255, 0, 0, 0.05);
-            display: inline-block;
-            font-size: 1.2rem;
-            color: #ff6666;
-            letter-spacing: 2px;
-        }
-
-        .counter-box span {
-            color: #ff0000;
-            font-weight: bold;
-            font-size: 1.8rem;
-            text-shadow: 0 0 30px #ff0000;
-            animation: pulse 1.4s infinite alternate;
-        }
-
-        /* ============================================================
-                   SECTIONS
-                   ============================================================ */
-        .section {
-            margin-top: 30px;
-            padding: 10px 0;
-        }
-
-        .section img,
-        .section video {
-            max-width: 100%;
-            border-radius: 12px;
-            margin: 8px 4px;
-            border: 1px solid #ff000033;
-            box-shadow: 0 0 30px #ff000022;
-        }
-
-        .section video {
-            max-width: 280px;
-        }
-
-        /* ============================================================
-                   TECH STACK BADGES
-                   ============================================================ */
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .tech-stack img {
-            border-radius: 6px;
-            transition: all 0.3s;
-            filter: grayscale(0.5) brightness(0.8);
-        }
-
-        .tech-stack img:hover {
-            transform: scale(1.15) rotate(-2deg);
-            filter: grayscale(0) brightness(1.2);
-            box-shadow: 0 0 30px #ff000066;
-        }
-
-        /* ============================================================
-                   GITHUB STATS
-                   ============================================================ */
-        .github-stats {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 14px;
-        }
-
-        .github-stats img {
-            border-radius: 10px;
-            border: 1px solid #ff000033;
-            transition: all 0.3s;
-            max-width: 100%;
-        }
-
-        .github-stats img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 40px #ff000044;
-        }
-
-        /* ============================================================
-                   CONTACT BUTTON
-                   ============================================================ */
-        .contact-btn {
-            margin-top: 28px;
-            padding: 14px 44px;
-            background: transparent;
-            color: #ff1a1a;
-            border: 2px solid #ff1a1a;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            font-weight: bold;
-            transition: all 0.3s;
-            text-shadow: 0 0 20px #ff0000;
-            box-shadow: 0 0 30px #ff000022;
-            font-family: 'Courier New', monospace;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-btn::after {
-            content: '';
+        .glitch-overlay {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, #ff000044 0%, transparent 70%);
-            animation: btnPulse 2s infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 4;
+        }
+        .color-distortion {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 3;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.2s ease;
         }
-
-        .contact-btn:hover::after {
-            opacity: 1;
+        .camera-footer {
+            padding: 6px 10px;
+            background: rgba(0, 0, 0, 0.7);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #999;
+            text-align: center;
         }
-
-        .contact-btn:hover {
-            background: #ff0000;
-            color: #000;
-            box-shadow: 0 0 60px #ff0000, 0 0 120px #ff000044;
-            transform: scale(1.05);
-        }
-
-        @keyframes btnPulse {
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-            50% {
-                transform: translate(10%, 10%) scale(1.3);
-            }
-        }
-
-        /* ============================================================
-                   CONTACT LINKS
-                   ============================================================ */
-        .contact-links {
-            display: none;
-            margin-top: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 14px;
-        }
-
-        .contact-links.show {
+        .control-panel {
             display: flex;
-            animation: fadeUp 0.5s ease;
+            flex-direction: column;
+            gap: 15px;
         }
-
-        @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px) scale(0.95);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .badge {
-            padding: 12px 26px;
-            border-radius: 10px;
-            font-weight: bold;
-            text-decoration: none;
-            color: #fff;
-            transition: all 0.3s;
-            font-size: 0.95rem;
+        .log-terminal {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 10px;
+            max-height: 180px;
+            overflow-y: auto;
+            font-size: 0.75rem;
             letter-spacing: 1px;
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            color: #aaa;
         }
-
-        .badge::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 12px;
-            background: linear-gradient(45deg, #ff0000, #ff4444, #880000, #ff0000);
-            background-size: 300% 300%;
-            z-index: -1;
-            animation: borderGlow 3s ease infinite;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .badge:hover::before {
-            opacity: 1;
-        }
-
-        .badge:hover {
-            transform: scale(1.12) rotate(-1deg);
-            box-shadow: 0 0 40px #ff000066;
-        }
-
-        @keyframes borderGlow {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .badge.github {
-            background: #1a0000;
-            border-color: #ff3333;
-            color: #ff6666;
-        }
-        .badge.facebook {
-            background: #0a001a;
-            border-color: #3355ff;
-            color: #6688ff;
-        }
-        .badge.telegram {
-            background: #001a1a;
-            border-color: #33ccff;
-            color: #66ddff;
-        }
-        .badge.instagram {
-            background: #1a000a;
-            border-color: #ff3366;
-            color: #ff6688;
-        }
-
-        /* ============================================================
-                   GLITCH OVERLAY (scanlines)
-                   ============================================================ */
-        #glitch-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9998;
-            background: repeating-linear-gradient(0deg,
-                    rgba(255, 0, 0, 0.02) 0px,
-                    rgba(255, 0, 0, 0.02) 2px,
-                    transparent 2px,
-                    transparent 6px);
-            animation: scanlines 0.08s linear infinite;
-        }
-
-        @keyframes scanlines {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(6px);
-            }
-        }
-
-        .flicker {
-            animation: flicker 0.15s infinite alternate;
-        }
-
-        @keyframes flicker {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0.85;
-            }
-        }
-
-        /* ============================================================
-                   JUMPSCARE
-                   ============================================================ */
-        #jumpscare {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 10000;
-            background: #000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
-            animation: jumpscareFlash 0.4s ease;
-        }
-
-        #jumpscare.show {
-            display: flex;
-        }
-
-        #jumpscare img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-            filter: contrast(1.4) brightness(0.9);
-        }
-
-        @keyframes jumpscareFlash {
-            0% {
-                opacity: 0;
-                transform: scale(1.5);
-            }
-            20% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            80% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-        }
-
-        /* ============================================================
-                   HIDDEN MESSAGE
-                   ============================================================ */
-        .hidden-message {
-            position: fixed;
-            bottom: 12px;
-            right: 14px;
-            font-size: 0.6rem;
-            color: #ff000022;
-            z-index: 2;
+        .terminal-header {
+            color: var(--sentinel-glow);
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
             letter-spacing: 2px;
-            animation: pulse 4s infinite alternate;
-            pointer-events: none;
+        }
+        .terminal-content {
+            font-family: 'Share Tech Mono', monospace;
+            line-height: 1.6;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .control-btn {
+            background: #111;
+            border: 1px solid #333;
+            color: #ccc;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: none;
+        }
+        .control-btn:hover {
+            background: #1a1a1a;
+            border-color: var(--sentinel-glow);
+            color: var(--sentinel-glow);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
         }
 
-        /* ============================================================
-                   DIVIDER
-                   ============================================================ */
-        .divider {
-            width: 60%;
-            height: 1px;
-            margin: 20px auto;
-            background: linear-gradient(90deg, transparent, #ff000066, transparent);
+        /* Responsive for SENTINEL */
+        @media (max-width: 768px) {
+            .camera-grid { grid-template-columns: repeat(2, 1fr); }
+            .camera-grid.two-per-row { grid-template-columns: 1fr; }
+            .camera-grid.single-column { grid-template-columns: 1fr; }
+            .system-header { flex-direction: column; align-items: flex-start; }
+        }
+        @media (max-width: 480px) {
+            .camera-grid { grid-template-columns: 1fr; }
+            .camera-grid.two-per-row,
+            .camera-grid.single-column { grid-template-columns: 1fr; }
         }
 
-        /* ============================================================
-                   RESPONSIVE
-                   ============================================================ */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
-            .card {
-                padding: 18px 12px;
-                margin: 12px auto;
-            }
-            .profile-container {
-                width: 130px;
-                height: 130px;
-            }
-            .profile-container::before {
-                width: 150px;
-                height: 150px;
-                top: -10px;
-                left: -10px;
-            }
-            .contact-btn {
-                padding: 10px 24px;
-                font-size: 1rem;
-            }
-            .badge {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
-            #overlay h1 {
-                font-size: 2.4rem;
-            }
-            #overlay .enter-btn {
-                padding: 12px 30px;
-                font-size: 1.2rem;
-            }
-            .counter-box span {
-                font-size: 1.4rem;
-            }
-            .github-stats img {
-                max-width: 90%;
-            }
+        /* ===== GLOBAL RESPONSIVE ===== */
+        @media (max-width:768px) {
+            .container{padding:15px 10px 50px}.profile-image-wrapper{width:150px;height:150px}.eyes-container{gap:15px}.eye{width:50px;height:32px}.eye::before{width:16px;height:16px}.skills-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.skill-card{padding:12px 8px}.skill-icon{font-size:28px}.skill-name{font-size:.8rem}.gif-gallery{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}.social-link{width:42px;height:42px;font-size:18px}.contact-section{padding:20px 12px}.jump-scare-btn{padding:12px 24px;font-size:.8rem}.badge{padding:8px 14px;font-size:.7rem;gap:6px}.badge i{font-size:1rem}#overlay h1{font-size:2rem}#overlay .enter-btn{padding:12px 30px;font-size:1.2rem}.counter-box span{font-size:1.3rem}
         }
-
-        /* ============================================================
-                   SCROLLBAR
-                   ============================================================ */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0000;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #ff000066;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ff000099;
-        }
-
-        .red-glow {
-            color: #ff1a1a;
-            text-shadow: 0 0 30px #ff0000, 0 0 60px #ff000044;
+        @media (max-width:480px) {
+            .glitch-title{font-size:1.3rem}.profile-image-wrapper{width:120px;height:120px}.eye{width:38px;height:24px}.eye::before{width:12px;height:12px}.eyes-container{gap:8px}.gif-gallery{grid-template-columns:repeat(2,1fr)}.skills-grid{grid-template-columns:repeat(2,1fr)}.contact-links{gap:6px}.badge{padding:6px 10px;font-size:.6rem;letter-spacing:.3px}.badge i{font-size:.8rem}
         }
     </style>
 </head>
-
 <body>
 
-    <!-- ===== GLITCH OVERLAY ===== -->
+    <!-- CUSTOM CURSOR -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+    <!-- BLOOD DRIPS -->
+    <div class="blood-drip-top"></div>
+    <div class="blood-drip-extra1"></div>
+    <div class="blood-drip-extra2"></div>
+    <div class="blood-drip-extra3"></div>
+
+    <!-- VIGNETTE -->
+    <div class="vignette"></div>
+
+    <!-- FLOATING GHOSTS -->
+    <div class="ghost">👻</div>
+    <div class="ghost">💀</div>
+    <div class="ghost">👁️</div>
+    <div class="ghost">🕯️</div>
+    <div class="ghost">🩸</div>
+
+    <!-- FOG -->
+    <div class="fog"></div>
+
+    <!-- GLITCH SCANLINES -->
     <div id="glitch-overlay"></div>
 
-    <!-- ===== OVERLAY (ENTRY) ===== -->
+    <!-- BACKGROUND CANVAS -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- ENTRY OVERLAY -->
     <div id="overlay">
         <h1>☠ YH.X1t.hk</h1>
         <p>〣 اهلاً بك في عالمي 〣</p>
@@ -723,376 +651,624 @@
         <button class="enter-btn" id="enterBtn">⛧ ادخل ⛧</button>
     </div>
 
-    <!-- ===== BACKGROUND CANVAS ===== -->
-    <canvas id="bg-canvas"></canvas>
+    <!-- JUMP SCARE OVERLAY -->
+    <div class="jump-scare-overlay" id="jumpScareOverlay">
+        <img src="https://media.giphy.com/media/3o7TKSjRrfHjry2Lna/giphy.gif" alt="SCARY" id="jumpScareImg">
+    </div>
 
-    <!-- ===== MAIN CARD ===== -->
-    <div class="card" id="mainCard">
+    <!-- SOUND TOGGLE -->
+    <button class="sound-toggle" id="soundToggle" title="تشغيل/إيقاف الصوت المرعب">🔇</button>
 
-        <!-- ===== PROFILE ===== -->
-        <div class="profile-container">
-            <img src="https://up6.cc/2026/08/178743092008371.png" alt="profile" />
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="glitch-wrapper">
+            <h1 class="glitch-title" data-text="☠️ YH.X1t.hk ☠️">☠️ YH.X1t.hk ☠️</h1>
+            <p class="subtitle">⚠️ هذه الصفحة ملعونة... لقد تم تحذيرك ⚠️</p>
         </div>
 
-        <h1 class="flicker">-YH.X1t.hk</h1>
-        <p class="sub-title">〣 KNOW MORE ABOUT ME 〣</p>
+        <!-- PROFILE -->
+        <div class="profile-section">
+            <div class="profile-image-wrapper">
+                <img src="https://up6.cc/2026/08/178743092008371.png" alt="YAHYA.HK Profile">
+            </div>
+        </div>
 
+        <!-- EYES -->
+        <div class="eyes-container">
+            <div class="eye" id="eyeLeft"></div>
+            <div class="eye" id="eyeRight"></div>
+        </div>
+
+        <!-- BIO -->
         <div class="bio-text">
             <strong>☠ Ethical cybersecurity professional</strong> licensed by the Communications Authority<br />
             and a <strong>forensic &amp; technical expert</strong> licensed by the Cybercrime Department <strong>(CISSP)</strong>.
         </div>
 
-        <h1 style="font-size:2.2rem; margin-top:6px;">YAHYA.HK</h1>
+        <h1 style="font-size:1.8rem; margin-top:6px; text-align:center; font-family:'Nosifer',cursive; color:#ff1a1a; text-shadow:0 0 30px #ff0000;">YAHYA.HK</h1>
 
-        <!-- ===== VISITOR COUNTER ===== -->
+        <!-- VISITOR COUNTER -->
         <div class="counter-box">
             💀 TOTAL VISITORS: <span id="visitor-count">666K</span>
         </div>
-        
+
         <div class="divider"></div>
 
-        <!-- ===== TECH STACK ===== -->
-        <div class="section">
-            <h2>💻 Tech Stack</h2>
-            <div class="tech-stack">
-                <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
-                <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat-square&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript" />
-                <img src="https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=ffdd54" alt="Python" />
-                <img src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat-square&logo=php&logoColor=white" alt="PHP" />
-                <img src="https://img.shields.io/badge/node.js-6DA55F?style=flat-square&logo=node.js&logoColor=white" alt="Node.js" />
-                <img src="https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB" alt="React" />
-                <img src="https://img.shields.io/badge/mongodb-%234ea94b.svg?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB" />
-                <img src="https://img.shields.io/badge/nginx-%23009639.svg?style=flat-square&logo=nginx&logoColor=white" alt="Nginx" />
-                <img src="https://img.shields.io/badge/cloudflare-F38020?style=flat-square&logo=cloudflare&logoColor=white" alt="Cloudflare" />
-                <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind" />
-                <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=flat-square&logo=mysql&logoColor=white" alt="MySQL" />
-                <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL" />
-                <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=flat-square&logo=redis&logoColor=white" alt="Redis" />
-                <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=flat-square&logo=TensorFlow&logoColor=white" alt="TensorFlow" />
-                <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions" />
-                <img src="https://img.shields.io/badge/OpenGL-white?logo=OpenGL&style=flat-square" alt="OpenGL" />
-                <img src="https://img.shields.io/badge/Wireguard-%2388171A.svg?style=flat-square&logo=wireguard&logoColor=white" alt="Wireguard" />
-            </div>
+        <!-- SCARY SKILLS -->
+        <h2 class="section-title">🩸 ماذا أفعل في الظلام؟ 🩸</h2>
+        <div class="skills-grid">
+            <div class="skill-card"><div class="skill-icon">🔪</div><div class="skill-name">اختراق التطبيقات</div></div>
+            <div class="skill-card"><div class="skill-icon">🕷️</div><div class="skill-name">تجاوز الحماية</div></div>
+            <div class="skill-card"><div class="skill-icon">💀</div><div class="skill-name">تطوير الويب المظلم</div></div>
+            <div class="skill-card"><div class="skill-icon">🦇</div><div class="skill-name">بوتات آلية مرعبة</div></div>
+            <div class="skill-card"><div class="skill-icon">⚰️</div><div class="skill-name">حذف الحسابات</div></div>
+            <div class="skill-card"><div class="skill-icon">🕸️</div><div class="skill-name">استعادة الحسابات الرقمية</div></div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- ===== CURRENT FOCUS ===== -->
-        <div class="section">
-            <h2>🤖 Current Focus</h2>
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXBmeHE4MHI4dTZvYnhtd2owbWJxNWR2MDd0YzNndmNyMzY0ZTJ2ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6OrCT1jVbonHG/giphy.gif" alt="focus" style="max-width:300px;" />
+        <!-- TECH STACK -->
+        <h2 class="section-title">💻 Tech Stack</h2>
+        <div class="tech-stack">
+            <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
+            <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat-square&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript" />
+            <img src="https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=ffdd54" alt="Python" />
+            <img src="https://img.shields.io/badge/php-%23777BB4.svg?style=flat-square&logo=php&logoColor=white" alt="PHP" />
+            <img src="https://img.shields.io/badge/node.js-6DA55F?style=flat-square&logo=node.js&logoColor=white" alt="Node.js" />
+            <img src="https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB" alt="React" />
+            <img src="https://img.shields.io/badge/mongodb-%234ea94b.svg?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB" />
+            <img src="https://img.shields.io/badge/nginx-%23009639.svg?style=flat-square&logo=nginx&logoColor=white" alt="Nginx" />
+            <img src="https://img.shields.io/badge/cloudflare-F38020?style=flat-square&logo=cloudflare&logoColor=white" alt="Cloudflare" />
+            <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+            <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=flat-square&logo=mysql&logoColor=white" alt="MySQL" />
+            <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+            <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=flat-square&logo=redis&logoColor=white" alt="Redis" />
+            <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=flat-square&logo=TensorFlow&logoColor=white" alt="TensorFlow" />
+            <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=flat-square&logo=githubactions&logoColor=white" alt="GitHub Actions" />
+            <img src="https://img.shields.io/badge/OpenGL-white?logo=OpenGL&style=flat-square" alt="OpenGL" />
+            <img src="https://img.shields.io/badge/Wireguard-%2388171A.svg?style=flat-square&logo=wireguard&logoColor=white" alt="Wireguard" />
         </div>
 
         <div class="divider"></div>
 
-        <!-- ===== HACK ===== -->
-        <div class="section">
-            <h2 style="color:#ff0000; text-shadow:0 0 60px #ff0000;">☠ HACK ☠</h2>
-            <div class="tech-stack">
-                <img src="https://img.shields.io/badge/FastAPI-005571?style=flat-square&logo=fastapi" alt="FastAPI" />
-                <img src="https://img.shields.io/badge/JWT-black?style=flat-square&logo=JSON%20web%20tokens" alt="JWT" />
-                <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat-square&logo=pandas&logoColor=white" alt="Pandas" />
-                <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat-square&logo=numpy&logoColor=white" alt="NumPy" />
-                <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat-square&logo=PyTorch&logoColor=white" alt="PyTorch" />
-                <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=flat-square&logo=scikit-learn&logoColor=white" alt="Scikit-learn" />
-                <img src="https://img.shields.io/badge/Notion-%23000000.svg?style=flat-square&logo=notion&logoColor=white" alt="Notion" />
-                <img src="https://img.shields.io/badge/cisco-%23049fd9.svg?style=flat-square&logo=cisco&logoColor=black" alt="Cisco" />
-            </div>
+        <!-- HACK -->
+        <h2 class="section-title" style="color:#ff0000; text-shadow:0 0 60px #ff0000;">☠ HACK ☠</h2>
+        <div class="tech-stack">
+            <img src="https://img.shields.io/badge/FastAPI-005571?style=flat-square&logo=fastapi" alt="FastAPI" />
+            <img src="https://img.shields.io/badge/JWT-black?style=flat-square&logo=JSON%20web%20tokens" alt="JWT" />
+            <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=flat-square&logo=pandas&logoColor=white" alt="Pandas" />
+            <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=flat-square&logo=numpy&logoColor=white" alt="NumPy" />
+            <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat-square&logo=PyTorch&logoColor=white" alt="PyTorch" />
+            <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=flat-square&logo=scikit-learn&logoColor=white" alt="Scikit-learn" />
+            <img src="https://img.shields.io/badge/Notion-%23000000.svg?style=flat-square&logo=notion&logoColor=white" alt="Notion" />
+            <img src="https://img.shields.io/badge/cisco-%23049fd9.svg?style=flat-square&logo=cisco&logoColor=black" alt="Cisco" />
         </div>
 
         <div class="divider"></div>
 
-        <!-- ===== VIDEO ===== -->
-        <div class="section">
-            <video width="100%" autoplay muted loop playsinline style="max-width:300px; border-radius:15px; border:1px solid #ff000044; box-shadow:0 0 40px #ff000022;">
+        <!-- SCARY GIF GALLERY -->
+        <h2 class="section-title">👁️ معرض الرعب 👁️</h2>
+        <div class="gif-gallery">
+            <div class="gif-item"><img src="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif" alt="رعب 1" loading="lazy"><div class="gif-overlay">الظلام يقترب...</div></div>
+            <div class="gif-item"><img src="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif" alt="رعب 2" loading="lazy"><div class="gif-overlay">لا تنظر للخلف...</div></div>
+            <div class="gif-item"><img src="https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif" alt="رعب 3" loading="lazy"><div class="gif-overlay">الدم يسيل...</div></div>
+            <div class="gif-item"><img src="https://media.giphy.com/media/xT9DPIlGnuHpr2yObu/giphy.gif" alt="رعب 4" loading="lazy"><div class="gif-overlay">إنهم يراقبونك...</div></div>
+            <div class="gif-item"><img src="https://media.giphy.com/media/3o7abAHdYvZdBNnGZq/giphy.gif" alt="رعب 5" loading="lazy"><div class="gif-overlay">الصراخ في الظلام...</div></div>
+            <div class="gif-item"><img src="https://as1.ftcdn.net/jpg/03/93/68/30/1000_F_393683022_rPndxygSrooLjYi6OTIxPkQpj6mYmiJT.webp" alt="رعب 6" loading="lazy"><div class="gif-overlay">الوجه الملعون...</div></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- VIDEO -->
+        <div style="text-align:center;">
+            <video width="100%" autoplay muted loop playsinline style="max-width:280px;border-radius:15px;border:1px solid #ff000044;box-shadow:0 0 40px #ff000022;">
                 <source src="https://files.catbox.moe/9lpd3n.webm" type="video/webm" />
             </video>
         </div>
 
         <div class="divider"></div>
 
-        <!-- ===== MORALS ===== -->
-        <div class="section">
-            <h1 style="font-size:1.8rem; text-shadow:0 0 30px #ff0000;">Adhere to morals...</h1>
-            <div style="margin-top:15px; line-height:2.2;">
-                <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
-                <img src="https://img.shields.io/badge/markdown-%23000000.svg?style=flat-square&logo=markdown&logoColor=white" alt="Markdown" />
-                <img src="https://img.shields.io/badge/bootstrap-%238511FA.svg?style=flat-square&logo=bootstrap&logoColor=white" alt="Bootstrap" />
-                <img src="https://img.shields.io/badge/React_Router-CA4245?style=flat-square&logo=react-router&logoColor=white" alt="React Router" />
-                <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=flat-square&logo=react%20query&logoColor=white" alt="React Query" />
-                <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white" alt="Vite" />
-                <img src="https://img.shields.io/badge/gunicorn-%298729.svg?style=flat-square&logo=gunicorn&logoColor=white" alt="Gunicorn" />
-                <img src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite" />
-                <img src="https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=mariadb&logoColor=white" alt="MariaDB" />
-                <img src="https://img.shields.io/badge/SciPy-%230C55A5.svg?style=flat-square&logo=scipy&logoColor=white" alt="SciPy" />
-                <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=flat-square&logo=Matplotlib&logoColor=black" alt="Matplotlib" />
-                <img src="https://img.shields.io/badge/Render-%46E3B7.svg?style=flat-square&logo=render&logoColor=white" alt="Render" />
-                <img src="https://img.shields.io/badge/Vultr-007BFC.svg?style=flat-square&logo=vultr" alt="Vultr" />
-                <img src="https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=flat-square&logo=google-cloud&logoColor=white" alt="Google Cloud" />
-                <img src="https://shields.io/badge/FFmpeg-%23171717.svg?logo=ffmpeg&style=flat-square&labelColor=171717&logoColor=5cb85c" alt="FFmpeg" />
-                <img src="https://img.shields.io/badge/Twilio-F22F46?style=flat-square&logo=Twilio&logoColor=white" alt="Twilio" />
+        <!-- ===== SENTINEL SURVEILLANCE SYSTEM ===== -->
+        <h2 class="section-title">📡 نظام المراقبة SENTINEL 📡</h2>
+        <div class="security-system">
+            <header class="system-header">
+                <div class="system-title">
+                    <h1><span class="glitch-text">SENTINEL</span></h1>
+                    <div class="subtitle">ADVANCED SURVEILLANCE SYSTEM / STATUS: <span class="status-alert">COMPROMISED</span></div>
+                </div>
+                <div class="status-panel">
+                    <div class="status-item">
+                        <span class="status-label">UPTIME:</span>
+                        <span class="status-value" id="uptime-display">23:14:58</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">TIME:</span>
+                        <span class="status-value" id="time-display">00:00:00</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="camera-grid three-per-row" id="cameraGrid">
+                <div class="camera-feed" id="camera1">
+                    <div class="camera-header"><span class="camera-id">CAM_01</span><span class="camera-status">LIVE</span></div>
+                    <div class="camera-content">
+                        <video muted loop playsinline class="camera-video" id="video1"></video>
+                        <div class="scan-line"></div>
+                        <div class="noise-overlay"></div>
+                        <div class="glitch-overlay"></div>
+                        <div class="color-distortion"></div>
+                    </div>
+                    <div class="camera-footer">MAIN ENTRANCE</div>
+                </div>
+                <div class="camera-feed" id="camera2">
+                    <div class="camera-header"><span class="camera-id">CAM_02</span><span class="camera-status">LIVE</span></div>
+                    <div class="camera-content">
+                        <video muted loop playsinline class="camera-video" id="video2"></video>
+                        <div class="scan-line"></div>
+                        <div class="noise-overlay"></div>
+                        <div class="glitch-overlay"></div>
+                        <div class="color-distortion"></div>
+                    </div>
+                    <div class="camera-footer">RECEPTION</div>
+                </div>
+                <div class="camera-feed" id="camera3">
+                    <div class="camera-header"><span class="camera-id">CAM_03</span><span class="camera-status offline">OFFLINE</span></div>
+                    <div class="camera-content">
+                        <video muted loop playsinline class="camera-video" id="video3"></video>
+                        <div class="scan-line"></div>
+                        <div class="noise-overlay"></div>
+                        <div class="glitch-overlay"></div>
+                        <div class="color-distortion"></div>
+                    </div>
+                    <div class="camera-footer">HALLWAY</div>
+                </div>
+                <div class="camera-feed" id="camera4">
+                    <div class="camera-header"><span class="camera-id">CAM_04</span><span class="camera-status">LIVE</span></div>
+                    <div class="camera-content">
+                        <video muted loop playsinline class="camera-video" id="video4"></video>
+                        <div class="scan-line"></div>
+                        <div class="noise-overlay"></div>
+                        <div class="glitch-overlay"></div>
+                        <div class="color-distortion"></div>
+                    </div>
+                    <div class="camera-footer">SERVER ROOM</div>
+                </div>
+                <div class="camera-feed" id="camera5">
+                    <div class="camera-header"><span class="camera-id">CAM_05</span><span class="camera-status offline">OFFLINE</span></div>
+                    <div class="camera-content">
+                        <video muted loop playsinline class="camera-video" id="video5"></video>
+                        <div class="scan-line"></div>
+                        <div class="noise-overlay"></div>
+                        <div class="glitch-overlay"></div>
+                        <div class="color-distortion"></div>
+                    </div>
+                    <div class="camera-footer">PARKING</div>
+                </div>
+                <div class="camera-feed" id="camera6">
+                    <div class="camera-header"><span class="camera-id">CAM_06</span><span class="camera-status">LIVE</span></div>
+                    <div class="camera-content">
+                        <video muted loop playsinline class="camera-video" id="video6"></video>
+                        <div class="scan-line"></div>
+                        <div class="noise-overlay"></div>
+                        <div class="glitch-overlay"></div>
+                        <div class="color-distortion"></div>
+                    </div>
+                    <div class="camera-footer">LOBBY</div>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <div class="log-terminal">
+                    <div class="terminal-header">SYSTEM LOG</div>
+                    <div class="terminal-content" id="log-content">
+                        > SECURITY SYSTEM INITIALIZED<br>
+                        > CONNECTED TO MAIN SERVER<br>
+                        > WARNING: UNAUTHORIZED ACCESS ATTEMPTS DETECTED<br>
+                        > SYSTEM INTEGRITY: 68%<br>
+                        > APPLYING SECURITY PROTOCOLS...
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="toggle-grid" class="control-btn">GRID VIEW</button>
+                    <button id="reset-system" class="control-btn">RESET SYSTEM</button>
+                    <button id="trigger-glitch" class="control-btn">FORCE GLITCH</button>
+                    <button id="toggle-filter" class="control-btn">TOGGLE FILTER</button>
+                </div>
             </div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- ===== GITHUB STATS ===== -->
-        <div class="section">
-            <h2>🕷🕸 GitHub Stats</h2>
-            
-
-<div style="margin-top:12px;">
-    <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=0xbitx&theme=radical&v=2" alt="Profile Details" style="max-width:100%; border-radius:10px; border:1px solid #ff000033;" />
-</div>
-
-<div style="margin-top:12px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
-    <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xbitx&theme=radical&v=2" alt="Stats Card" style="max-width:100%; border-radius:10px;" />
-    <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=0xbitx&theme=radical&v=2" alt="Commit Language" style="max-width:100%; border-radius:10px;" />
-</div>
-            <div style="margin-top:12px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
-                <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xbitx&theme=radical" alt="Stats Card" style="max-width:100%; border-radius:10px;" />
-                <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=0xbitx&theme=radical" alt="Commit Language" style="max-width:100%; border-radius:10px;" />
-            </div>
-
-            <div style="margin-top:14px;">
-                <img src="https://github-readme-activity-graph.vercel.app/graph?username=22MH1A42G1&theme=redical&hide_border=true&bg_color=0a0000&color=ff4444&line=ff0000&point=ff6666" alt="Activity Graph" style="max-width:100%; border-radius:10px; border:1px solid #ff000033;" />
-            </div>
-            
-        <div class="divider"></div>
-
-        <!-- ===== ABOUT ME ===== -->
-        <div class="section">
-            <h2>🧑‍💻 About Me</h2>
-            <div class="bio-text" style="max-width:750px;">
-                I am <strong>Aditya Indana</strong>, a Computer Science student specializing in AI &amp; ML, with hands-on experience in cloud platforms, DevOps workflows, and production-oriented web development.
-                <br /><br />
-                🚀 <strong>Aspiring AI/ML Engineer</strong> | <strong>CISSP — Certified Information Systems Security Professional</strong> Certified
-            </div>
+        <!-- GITHUB STATS -->
+        <h2 class="section-title">🕷🕸 GitHub Stats</h2>
+        <div style="text-align:center;margin-top:12px;">
+            <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=0xbitx&theme=radical&v=2" alt="Profile Details" style="max-width:100%;border-radius:10px;border:1px solid #ff000033;" />
+        </div>
+        <div style="margin-top:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
+            <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xbitx&theme=radical&v=2" alt="Stats Card" style="max-width:100%;border-radius:10px;" />
+            <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=0xbitx&theme=radical&v=2" alt="Commit Language" style="max-width:100%;border-radius:10px;" />
+        </div>
+        <div style="margin-top:14px;text-align:center;">
+            <img src="https://github-readme-activity-graph.vercel.app/graph?username=0xbitx&theme=redical&hide_border=true&bg_color=0a0000&color=ff4444&line=ff0000&point=ff6666" alt="Activity Graph" style="max-width:100%;border-radius:10px;border:1px solid #ff000033;" />
         </div>
 
         <div class="divider"></div>
 
-        <!-- ===== CONTACT ===== -->
-        <div class="section">
-            <h2>📬 Contact Me</h2>
-
-            <div style="margin:10px 0;">
-                <img src="https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif" alt="Handshake" style="max-width:180px; border-radius:12px;" />
-            </div>
-
-            <div class="bio-text" style="max-width:600px; font-size:0.95rem;">
-                If you'd like to collaborate, discuss tech, or have any questions, feel free to reach out!<br />
-                I'm open to internships, freelance, and full-time opportunities in <strong>Cloud | DevOps | Python | AI</strong>.
-            </div>
-
-            <button class="contact-btn" id="contactToggle">☠ تواصل معي ☠</button>
-
-            <!-- CONTACT LINK (تم إزالة واتساب، فقط الأربعة المطلوبة) -->
-            <div class="contact-links" id="contactBox">
-                <a href="https://github.com/0xbitx" target="_blank" class="badge github">
-                    <i class="fab fa-github"></i> GITHUB
-                </a>
-                <a href="https://www.facebook.com/share/1RmnWSHhra/" target="_blank" class="badge facebook">
-                    <i class="fab fa-facebook-f"></i> FACEBOOK
-                </a>
-                <a href="https://t.me/YahyaH1k" target="_blank" class="badge telegram">
-                    <i class="fab fa-telegram"></i> TELEGRAM
-                </a>
-                <a href="https://www.instagram.com/o2oc_?igsh=MWN0dXBpajdzaTY2Zw==" target="_blank" class="badge instagram">
-                    <i class="fab fa-instagram"></i> INSTAGRAM
-                </a>
-            </div>
+        <!-- ABOUT ME -->
+        <h2 class="section-title">🧑‍💻 About Me</h2>
+        <div class="bio-text" style="max-width:750px;">
+            I am <strong>Aditya Indana</strong>, a Computer Science student specializing in AI &amp; ML, with hands-on experience in cloud platforms, DevOps workflows, and production-oriented web development.
+            <br /><br />
+            🚀 <strong>Aspiring AI/ML Engineer</strong> | <strong>CISSP — Certified Information Systems Security Professional</strong> Certified
         </div>
 
-        <!-- ===== HIDDEN MESSAGE ===== -->
+        <div class="divider"></div>
+
+        <!-- CONTACT LINKS -->
+        <h2 class="section-title">📞 تواصل مع معي 📞</h2>
+        <div class="contact-links" id="contactBox">
+            <a href="https://github.com/0xbitx" target="_blank" class="badge github"><i class="fab fa-github"></i> GITHUB</a>
+            <a href="https://www.facebook.com/share/1RmnWSHhra/" target="_blank" class="badge facebook"><i class="fab fa-facebook-f"></i> FACEBOOK</a>
+            <a href="https://t.me/YahyaH1k" target="_blank" class="badge telegram"><i class="fab fa-telegram"></i> TELEGRAM</a>
+            <a href="https://www.instagram.com/o2oc_?igsh=MWN0dXBpajdzaTY2Zw==" target="_blank" class="badge instagram"><i class="fab fa-instagram"></i> INSTAGRAM</a>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="contact-section" style="margin-top:20px;">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label>👤 اسمك (أو اسم ضحيتك)</label>
+                    <input type="text" placeholder="اكتب اسمك هنا..." required>
+                </div>
+                <div class="form-group">
+                    <label>📧 بريدك الإلكتروني (أو عنوان روحك)</label>
+                    <input type="email" placeholder="example@darkness.com" required>
+                </div>
+                <div class="form-group">
+                    <label>🔮 نوع التواصل المظلم</label>
+                    <select required>
+                        <option value="">اختر نوع الاختراق...</option>
+                        <option value="curse">لعنة</option>
+                        <option value="haunt">مطاردة</option>
+                        <option value="possess">استحواذ</option>
+                        <option value="summon">استدعاء</option>
+                        <option value="sacrifice">تضحية</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>💬 رسالتك المرعبة</label>
+                    <textarea placeholder="اكتب رسالتك هنا... لكن احذر ما تكتبه..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">🩸 أرسل الرسالة الملعونة 🩸</button>
+            </form>
+        </div>
+
+        <!-- SOCIAL LINKS -->
+        <h2 class="section-title">🔗 روابط الظلام 🔗</h2>
+        <div class="social-links">
+            <a href="https://github.com/0xbitx" target="_blank" class="social-link github-link" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.facebook.com/share/1RmnWSHhra/" target="_blank" class="social-link facebook-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://t.me/YahyaH1k" target="_blank" class="social-link telegram-link" title="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.instagram.com/o2oc_?igsh=MWN0dXBpajdzaTY2Zw==" target="_blank" class="social-link instagram-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+
+        <!-- JUMP SCARE BUTTON -->
+        <button class="jump-scare-btn" id="jumpScareBtn">⚠️ لا تضغط هنا ⚠️</button>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p class="footer-text">🕯️ هذه الصفحة ملعونة منذ 666 سنة 🕯️</p>
+            <p class="footer-text" style="font-size:0.75rem;margin-top:8px;color:#662222;">☠️ من يدخل هنا لا يخرج سالماً ☠️</p>
+            <p class="footer-text" style="font-size:0.7rem;margin-top:8px;color:#442222;">YH.X1t.hk © 2025 — All rights reserved to the dark side</p>
+        </div>
+
+        <!-- HIDDEN MESSAGE -->
         <div class="hidden-message">⛧ you are being watched ⛧</div>
 
     </div>
 
-    <!-- ===== AUDIO ===== -->
+    <!-- AUDIO -->
     <audio id="bgMusic" loop preload="auto">
         <source src="https://www.myinstants.com/media/sounds/creepy-ambient.mp3" type="audio/mpeg" />
         <source src="https://www.myinstants.com/media/sounds/horror-ambience.mp3" type="audio/mpeg" />
     </audio>
-
     <audio id="jumpscareSound" preload="auto">
         <source src="https://www.myinstants.com/media/sounds/scream-3.mp3" type="audio/mpeg" />
     </audio>
 
-    <!-- ============================================================
-    SCRIPTS
-    ============================================================ -->
     <script>
         // ============================================================
-        // 1. AUDIO ENGINE
+        // 1. CUSTOM CURSOR
         // ============================================================
-        (function initAudio() {
-            const audio = document.getElementById('bgMusic');
-            let audioCtx = null;
-            let oscillator = null;
-            let gainNode = null;
-            let isPlaying = false;
+        const cursor = document.getElementById('customCursor');
+        const cursorDot = document.getElementById('customCursorDot');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0, dotX = 0, dotY = 0;
 
-            function playHTML5Audio() {
-                audio.volume = 0.35;
-                audio.loop = true;
-                const p = audio.play();
-                if (p !== undefined) {
-                    p.then(() => {
-                        isPlaying = true;
-                        console.log('🎵 Audio playing');
-                    }).catch(() => {
-                        initWebAudio();
-                    });
-                } else {
-                    initWebAudio();
-                }
-            }
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
 
-            function initWebAudio() {
-                try {
-                    audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-                    oscillator = audioCtx.createOscillator();
-                    gainNode = audioCtx.createGain();
-                    oscillator.type = 'sawtooth';
-                    oscillator.frequency.setValueAtTime(110, audioCtx.currentTime);
-                    oscillator.frequency.exponentialRampToValueAtTime(55, audioCtx.currentTime + 4);
-                    oscillator.frequency.exponentialRampToValueAtTime(88, audioCtx.currentTime + 8);
-                    oscillator.detune.setValueAtTime(0, audioCtx.currentTime);
-                    oscillator.detune.linearRampToValueAtTime(1200, audioCtx.currentTime + 6);
-                    gainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.10, audioCtx.currentTime + 3);
-                    oscillator.connect(gainNode);
-                    gainNode.connect(audioCtx.destination);
-                    oscillator.start(audioCtx.currentTime);
-                    oscillator.stop(audioCtx.currentTime + 14);
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            dotX += (mouseX - dotX) * 0.5;
+            dotY += (mouseY - dotY) * 0.5;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            cursorDot.style.left = dotX + 'px';
+            cursorDot.style.top = dotY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
 
-                    function loopDrone() {
-                        if (!audioCtx || audioCtx.state === 'closed') return;
-                        try {
-                            const no = audioCtx.createOscillator();
-                            const ng = audioCtx.createGain();
-                            no.type = 'sawtooth';
-                            no.frequency.setValueAtTime(66 + Math.random() * 44, audioCtx.currentTime);
-                            no.frequency.exponentialRampToValueAtTime(33 + Math.random() * 33, audioCtx.currentTime + 5);
-                            no.detune.setValueAtTime(Math.random() * 400 - 200, audioCtx.currentTime);
-                            ng.gain.setValueAtTime(0.05 + Math.random() * 0.04, audioCtx.currentTime);
-                            ng.gain.exponentialRampToValueAtTime(0.02, audioCtx.currentTime + 6);
-                            no.connect(ng);
-                            ng.connect(audioCtx.destination);
-                            no.start(audioCtx.currentTime);
-                            no.stop(audioCtx.currentTime + 6);
-                            setTimeout(loopDrone, 5000 + Math.random() * 4000);
-                        } catch (_) {}
-                    }
-                    setTimeout(loopDrone, 2000);
-                    isPlaying = true;
-                    console.log('🎵 WebAudio drone');
-                } catch (_) {}
-            }
+        // ============================================================
+        // 2. EYE TRACKING
+        // ============================================================
+        const eyeLeft = document.getElementById('eyeLeft');
+        const eyeRight = document.getElementById('eyeRight');
 
-            document.addEventListener('click', function() {
-                if (!isPlaying) {
-                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-                    playHTML5Audio();
-                }
-            }, { once: false });
-
-            document.addEventListener('touchstart', function() {
-                if (!isPlaying) {
-                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-                    playHTML5Audio();
-                }
-            }, { once: false });
-
-            document.getElementById('enterBtn').addEventListener('click', function() {
-                setTimeout(() => {
-                    if (!isPlaying) {
-                        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-                        playHTML5Audio();
-                    }
-                }, 300);
+        document.addEventListener('mousemove', (e) => {
+            const eyes = [eyeLeft, eyeRight];
+            eyes.forEach(eye => {
+                const rect = eye.getBoundingClientRect();
+                const eyeCenterX = rect.left + rect.width / 2;
+                const eyeCenterY = rect.top + rect.height / 2;
+                const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+                const distance = Math.min(10, Math.hypot(e.clientX - eyeCenterX, e.clientY - eyeCenterY) / 22);
+                const pupilX = Math.cos(angle) * distance;
+                const pupilY = Math.sin(angle) * distance;
+                eye.style.setProperty('--pupil-x', pupilX + 'px');
+                eye.style.setProperty('--pupil-y', pupilY + 'px');
             });
-
-            window.__audio = {
-                play: playHTML5Audio,
-                stop: function() {
-                    audio.pause();
-                    audio.currentTime = 0;
-                    if (oscillator) { try { oscillator.stop(); } catch (_) {} }
-                    isPlaying = false;
-                }
-            };
-        })();
-
-        // ============================================================
-        // 2. JUMPSCARE
-        // ============================================================
-        (function initJumpscare() {
-            const container = document.getElementById('jumpscare');
-            const sound = document.getElementById('jumpscareSound');
-            let isScared = false;
-            let timeoutId = null;
-
-            function trigger() {
-                if (isScared) return;
-                isScared = true;
-                container.classList.add('show');
-                sound.volume = 0.5;
-                const p = sound.play();
-                if (p !== undefined) p.catch(() => {});
-                if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
-                clearTimeout(timeoutId);
-                timeoutId = setTimeout(() => {
-                    container.classList.remove('show');
-                    setTimeout(() => { isScared = false; }, 500);
-                }, 1600);
-            }
-
-            let first = true;
-
-            function schedule() {
-                const delay = first ? 12000 + Math.random() * 15000 : 18000 + Math.random() * 30000;
-                first = false;
-                timeoutId = setTimeout(() => {
-                    if (!isScared) trigger();
-                    schedule();
-                }, delay);
-            }
-
-            document.getElementById('enterBtn').addEventListener('click', function() {
-                setTimeout(schedule, 4000);
-            });
-
-            let mmc = 0;
-            document.addEventListener('mousemove', function() {
-                mmc++;
-                if (mmc > 50 && Math.random() < 0.005 && !isScared) { trigger();
-                    mmc = 0; }
-                if (mmc > 200) mmc = 0;
-            });
-
-            window.__triggerJumpscare = trigger;
-        })();
-
-        // ============================================================
-        // 3. CONTACT TOGGLE
-        // ============================================================
-        document.getElementById('contactToggle').addEventListener('click', function() {
-            document.getElementById('contactBox').classList.toggle('show');
         });
 
         // ============================================================
-        // 4. OVERLAY
+        // 3. BLOOD PARTICLES
+        // ============================================================
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.width = (Math.random() * 5 + 2) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            particle.style.animationDelay = Math.random() * 3 + 's';
+            particle.style.opacity = Math.random() * 0.7 + 0.3;
+            document.body.appendChild(particle);
+            setTimeout(() => { particle.remove(); }, 10000);
+        }
+        setInterval(createParticle, 300);
+
+        // ============================================================
+        // 4. JUMP SCARE
+        // ============================================================
+        const jumpScareBtn = document.getElementById('jumpScareBtn');
+        const jumpScareOverlay = document.getElementById('jumpScareOverlay');
+        const jumpScareImg = document.getElementById('jumpScareImg');
+        const jumpscareSound = document.getElementById('jumpscareSound');
+        const scaryImages = [
+            'https://media.giphy.com/media/3o7TKSjRrfHjry2Lna/giphy.gif',
+            'https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif',
+            'https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif',
+            'https://media.giphy.com/media/xT9DPIlGnuHpr2yObu/giphy.gif',
+            'https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif'
+        ];
+        let jumpScareCount = 0;
+        let isJumpScared = false;
+
+        function triggerJumpScare() {
+            if (isJumpScared) return;
+            isJumpScared = true;
+            const randomImg = scaryImages[Math.floor(Math.random() * scaryImages.length)];
+            jumpScareImg.src = randomImg;
+            jumpScareOverlay.classList.add('active');
+            jumpscareSound.volume = 0.5;
+            const p = jumpscareSound.play();
+            if (p !== undefined) p.catch(() => {});
+            if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+            setTimeout(() => {
+                jumpScareOverlay.classList.remove('active');
+                setTimeout(() => { isJumpScared = false; }, 500);
+            }, 800);
+        }
+
+        jumpScareBtn.addEventListener('click', () => {
+            jumpScareCount++;
+            triggerJumpScare();
+            if (jumpScareCount >= 3) {
+                jumpScareBtn.textContent = '💀 لقد حذرتك... 💀';
+                jumpScareBtn.style.animation = 'jumpscareBtnPulse 0.5s infinite';
+            }
+        });
+
+        jumpScareOverlay.addEventListener('click', () => {
+            jumpScareOverlay.classList.remove('active');
+            setTimeout(() => { isJumpScared = false; }, 300);
+        });
+
+        let mmc = 0;
+        document.addEventListener('mousemove', () => {
+            mmc++;
+            if (mmc > 50 && Math.random() < 0.004 && !isJumpScared) {
+                triggerJumpScare();
+                mmc = 0;
+            }
+            if (mmc > 200) mmc = 0;
+        });
+
+        // ============================================================
+        // 5. SCARY SOUND SYSTEM
+        // ============================================================
+        let audioCtx = null;
+        let soundEnabled = false;
+        const soundToggle = document.getElementById('soundToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let oscillator = null;
+        let gainNode = null;
+        let isPlaying = false;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioCtx;
+        }
+
+        function playScarySound(duration = 1, volume = 0.3) {
+            if (!soundEnabled) return;
+            try {
+                const ctx = initAudio();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(80, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + duration);
+                gain.gain.setValueAtTime(volume, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + duration);
+
+                const osc2 = ctx.createOscillator();
+                const gain2 = ctx.createGain();
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(120, ctx.currentTime);
+                osc2.frequency.exponentialRampToValueAtTime(60, ctx.currentTime + duration);
+                gain2.gain.setValueAtTime(volume * 0.5, ctx.currentTime);
+                gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+                osc2.connect(gain2);
+                gain2.connect(ctx.destination);
+                osc2.start(ctx.currentTime);
+                osc2.stop(ctx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        function startAmbientHorror() {
+            if (!soundEnabled || !audioCtx) return;
+            try {
+                const ctx = audioCtx;
+                oscillator = ctx.createOscillator();
+                gainNode = ctx.createGain();
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(55, ctx.currentTime);
+                oscillator.frequency.linearRampToValueAtTime(45, ctx.currentTime + 10);
+                oscillator.frequency.linearRampToValueAtTime(60, ctx.currentTime + 20);
+                oscillator.frequency.linearRampToValueAtTime(50, ctx.currentTime + 30);
+                gainNode.gain.setValueAtTime(0.05, ctx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.08, ctx.currentTime + 15);
+                gainNode.gain.linearRampToValueAtTime(0.05, ctx.currentTime + 30);
+                oscillator.connect(gainNode);
+                gainNode.connect(ctx.destination);
+                oscillator.start(ctx.currentTime);
+                isPlaying = true;
+            } catch (e) {}
+        }
+
+        function playHTML5Audio() {
+            bgMusic.volume = 0.35;
+            bgMusic.loop = true;
+            const p = bgMusic.play();
+            if (p !== undefined) {
+                p.then(() => { isPlaying = true; }).catch(() => { startAmbientHorror(); });
+            } else {
+                startAmbientHorror();
+            }
+        }
+
+        soundToggle.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            if (soundEnabled) {
+                soundToggle.textContent = '🔊';
+                soundToggle.style.borderColor = '#ff0000';
+                soundToggle.style.boxShadow = '0 0 45px rgba(255, 0, 0, 0.9)';
+                initAudio();
+                playHTML5Audio();
+                playScarySound(0.5, 0.4);
+            } else {
+                soundToggle.textContent = '🔇';
+                soundToggle.style.borderColor = '#8b0000';
+                soundToggle.style.boxShadow = '0 0 25px rgba(255, 0, 0, 0.5)';
+                bgMusic.pause();
+                bgMusic.currentTime = 0;
+                if (oscillator) { try { oscillator.stop(); } catch (e) {} oscillator = null; }
+                if (gainNode) { try { gainNode.disconnect(); } catch (e) {} gainNode = null; }
+                isPlaying = false;
+            }
+        });
+
+        // ============================================================
+        // 6. ENTRY OVERLAY
         // ============================================================
         document.getElementById('enterBtn').addEventListener('click', function() {
             const ov = document.getElementById('overlay');
             ov.classList.add('hidden');
             setTimeout(() => { ov.style.display = 'none'; }, 1200);
+            setTimeout(() => {
+                if (!isPlaying && soundEnabled) {
+                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+                    playHTML5Audio();
+                }
+            }, 300);
+            setTimeout(() => {
+                if (Math.random() > 0.3) triggerJumpScare();
+            }, 15000 + Math.random() * 15000);
         });
 
         // ============================================================
-        // 5. CANVAS — HORROR PARTICLES
+        // 7. CONTACT FORM (just alert for demo)
+        // ============================================================
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            playScarySound(1.5, 0.5);
+            alert('☠️ تم إرسال رسالتك إلى العالم السفلي... ☠️\n\nسيتم الرد عليك من قبل الأرواح قريباً...\n\n📩 أو راسلني مباشرة عبر:\n📱 تيليجرام: @YahyaH1k\n📧 GitHub: 0xbitx');
+            contactForm.reset();
+        });
+
+        // ============================================================
+        // 8. RANDOM SCARY SOUNDS ON HOVER
+        // ============================================================
+        document.querySelectorAll('.skill-card, .gif-item, .social-link, .submit-btn, .badge, .tech-stack img, .control-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if (soundEnabled && Math.random() > 0.6) {
+                    playScarySound(0.2, 0.1);
+                }
+            });
+        });
+
+        // ============================================================
+        // 9. SCREEN FLICKER
+        // ============================================================
+        function randomFlicker() {
+            const body = document.body;
+            body.style.filter = 'brightness(0.7)';
+            setTimeout(() => { body.style.filter = 'brightness(1)'; }, 50 + Math.random() * 100);
+        }
+        setInterval(() => {
+            if (Math.random() > 0.7) randomFlicker();
+        }, 2000);
+
+        // ============================================================
+        // 10. VISITOR COUNTER
+        // ============================================================
+        const counterEl = document.getElementById('visitor-count');
+        let count = 666000;
+        setInterval(() => {
+            count += Math.floor(Math.random() * 7) + 1;
+            counterEl.textContent = count.toLocaleString();
+            if (Math.random() < 0.02) {
+                counterEl.style.color = '#ff0000';
+                counterEl.style.textShadow = '0 0 60px #ff0000';
+                setTimeout(() => { counterEl.style.color = ''; counterEl.style.textShadow = ''; }, 300);
+            }
+        }, 2000 + Math.random() * 1000);
+
+        // ============================================================
+        // 11. CANVAS BACKGROUND
         // ============================================================
         (function initParticles() {
             const canvas = document.getElementById('bg-canvas');
@@ -1107,7 +1283,7 @@
             window.addEventListener('resize', resize);
 
             const particles = [];
-            const COUNT = 160;
+            const COUNT = 120;
             for (let i = 0; i < COUNT; i++) {
                 particles.push({
                     x: Math.random() * W,
@@ -1121,22 +1297,21 @@
             }
 
             const eyes = [];
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 5; i++) {
                 eyes.push({
                     x: Math.random() * W,
                     y: Math.random() * H,
-                    r: 6 + Math.random() * 8,
+                    r: 5 + Math.random() * 7,
                     angle: Math.random() * Math.PI * 2,
                     speed: 0.01 + Math.random() * 0.02,
                     pulse: 0
                 });
             }
 
-            let mouseX = W / 2,
-                mouseY = H / 2;
+            let mouseXc = W / 2, mouseYc = H / 2;
             document.addEventListener('mousemove', function(e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
+                mouseXc = e.clientX;
+                mouseYc = e.clientY;
             });
 
             function draw() {
@@ -1148,16 +1323,14 @@
                     if (p.x < 0 || p.x > W) p.vx *= -1;
                     if (p.y < 0 || p.y > H) p.vy *= -1;
 
-                    const dx = mouseX - p.x,
-                        dy = mouseY - p.y;
+                    const dx = mouseXc - p.x, dy = mouseYc - p.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < 200) {
                         p.vx += dx * 0.0002;
                         p.vy += dy * 0.0002;
                     }
                     const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-                    if (spd > 1.2) { p.vx = (p.vx / spd) * 1.2;
-                        p.vy = (p.vy / spd) * 1.2; }
+                    if (spd > 1.2) { p.vx = (p.vx / spd) * 1.2; p.vy = (p.vy / spd) * 1.2; }
 
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -1189,8 +1362,7 @@
                     ctx.lineWidth = 1;
                     ctx.stroke();
 
-                    const dx = mouseX - ex,
-                        dy = mouseY - ey;
+                    const dx = mouseXc - ex, dy = mouseYc - ey;
                     const d = Math.sqrt(dx * dx + dy * dy) || 1;
                     const px = ex + (dx / d) * eye.r * 0.3;
                     const py = ey + (dy / d) * eye.r * 0.3;
@@ -1237,51 +1409,7 @@
         })();
 
         // ============================================================
-        // 6. VISITOR COUNTER
-        // ============================================================
-        (function counter() {
-            const el = document.getElementById('visitor-count');
-            let count = 666000;
-            setInterval(() => {
-                count += Math.floor(Math.random() * 7) + 1;
-                el.textContent = count.toLocaleString();
-                if (Math.random() < 0.02) {
-                    el.style.color = '#ff0000';
-                    el.style.textShadow = '0 0 60px #ff0000';
-                    setTimeout(() => {
-                        el.style.color = '';
-                        el.style.textShadow = '';
-                    }, 300);
-                }
-            }, 2000 + Math.random() * 1000);
-        })();
-
-        // ============================================================
-        // 7. SCREEN FLICKER
-        // ============================================================
-        (function flicker() {
-            const overlay = document.getElementById('glitch-overlay');
-            setInterval(() => {
-                if (Math.random() < 0.03) {
-                    overlay.style.background =
-                        `repeating-linear-gradient(0deg, rgba(255,0,0,${0.05 + Math.random() * 0.1}) 0px, rgba(255,0,0,${0.05 + Math.random() * 0.1}) 2px, transparent 2px, transparent ${4 + Math.random() * 8}px)`;
-                    setTimeout(() => {
-                        overlay.style.background =
-                            'repeating-linear-gradient(0deg, rgba(255,0,0,0.02) 0px, rgba(255,0,0,0.02) 2px, transparent 2px, transparent 6px)';
-                    }, 150 + Math.random() * 300);
-                }
-            }, 1000);
-        })();
-
-        // ============================================================
-        // 8. CONSOLE WARNING
-        // ============================================================
-        console.log('%c☠ YOU ARE BEING WATCHED ☠', 'font-size:40px; color:#ff0000; font-weight:bold; text-shadow: 0 0 40px #ff0000;');
-        console.log('%c⛧ This page contains horror elements. Proceed at your own risk. ⛧', 'font-size:18px; color:#ff4444;');
-        console.log('%c👁️ YH.X1t.hk is always watching...', 'font-size:16px; color:#ff6666;');
-
-        // ============================================================
-        // 9. KEYBOARD EASTER EGG
+        // 12. KEYBOARD EASTER EGG
         // ============================================================
         let keySeq = [];
         document.addEventListener('keydown', function(e) {
@@ -1292,12 +1420,396 @@
                 document.body.style.transition = 'background 0.1s';
                 setTimeout(() => { document.body.style.backgroundColor = ''; }, 500);
                 keySeq = [];
-                if (window.__triggerJumpscare) setTimeout(window.__triggerJumpscare, 200);
+                triggerJumpScare();
             }
         });
 
+        // ============================================================
+        // 13. CONSOLE WARNING
+        // ============================================================
+        console.log('%c☠️ لا يجب أن تكون هنا... ☠️', 'color: #ff0000; font-size: 30px; font-weight: bold; text-shadow: 0 0 20px #ff0000;');
+        console.log('%cإذا كنت تقرأ هذا... فهم يراقبونك الآن...', 'color: #8b0000; font-size: 20px;');
+        console.log('%c👁️ 👁️ 👁️', 'color: #ff0000; font-size: 40px;');
+        console.log('%c📩 للتواصل: @YahyaH1k (Telegram) | 0xbitx (GitHub)', 'color: #ff4444; font-size: 16px;');
         console.log('💀 Press 666 for a surprise...');
-    </script>
 
+        // ============================================================
+        // 14. SENTINEL SYSTEM JAVASCRIPT
+        // ============================================================
+        (function sentinelSystem() {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const timeDisplay = document.getElementById('time-display');
+            const uptimeDisplay = document.getElementById('uptime-display');
+            const logContent = document.getElementById('log-content');
+            const toggleGridBtn = document.getElementById('toggle-grid');
+            const resetSystemBtn = document.getElementById('reset-system');
+            const triggerGlitchBtn = document.getElementById('trigger-glitch');
+            const toggleFilterBtn = document.getElementById('toggle-filter');
+            const cameraFeeds = document.querySelectorAll('.camera-feed');
+            const cameraGrid = document.getElementById('cameraGrid');
+            const videoElements = document.querySelectorAll('.camera-video');
+            const scanLines = document.querySelectorAll('.scan-line');
+
+            const videoSources = [
+                'https://mattcannon.games/codepen/glitches/cam1.mp4',
+                'https://mattcannon.games/codepen/glitches/cam2.mp4',
+                'https://mattcannon.games/codepen/glitches/cam3.mp4',
+                'https://mattcannon.games/codepen/glitches/cam4.mp4',
+                'https://mattcannon.games/codepen/glitches/cam5.mp4',
+                'https://mattcannon.games/codepen/glitches/cam6.mp4'
+            ];
+
+            let gridState = 'three-per-row';
+            let isColorMode = true;
+
+            function updateTime() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+
+            function logEvent(message) {
+                const timestamp = timeDisplay.textContent;
+                logContent.innerHTML = `> [${timestamp}] ${message}<br>` + logContent.innerHTML;
+                logContent.scrollTop = 0;
+            }
+
+            function randomizeScanLines() {
+                scanLines.forEach(scanLine => {
+                    const duration = 4 + Math.random() * 8;
+                    scanLine.style.animationDuration = `${duration}s`;
+                    const density = 2 + Math.random() * 6;
+                    scanLine.style.backgroundSize = `100% ${density}px`;
+                    scanLine.style.animationDelay = `-${Math.random() * 10}s`;
+                });
+            }
+
+            function applyRandomGlitch(feed, video, glitchOverlay, colorDistortion) {
+                const glitchDuration = Math.random() * 1000 + 300;
+                const numEffects = Math.floor(Math.random() * 3) + 1;
+                const possibleEffects = ['slice', 'rgb-split', 'pixel', 'flicker', 'neon', 'distort', 'invert', 'vhs', 'matrix', 'xray'];
+                const selectedEffects = [];
+                while (selectedEffects.length < numEffects) {
+                    const effect = possibleEffects[Math.floor(Math.random() * possibleEffects.length)];
+                    if (!selectedEffects.includes(effect)) selectedEffects.push(effect);
+                }
+
+                selectedEffects.forEach(effect => {
+                    switch (effect) {
+                        case 'slice':
+                            const sliceCount = Math.floor(Math.random() * 5) + 1;
+                            for (let i = 0; i < sliceCount; i++) {
+                                const sliceHeight = Math.random() * 30 + 5;
+                                const yPos = Math.random() * 80;
+                                const slice = document.createElement('div');
+                                slice.style.cssText = `position:absolute;left:0;right:0;top:${yPos}%;height:${sliceHeight}px;background:transparent;overflow:hidden;z-index:5;transform:translateX(${Math.random()*20-10}px);box-shadow:0 0 5px #0ff,inset 0 0 5px #0ff;`;
+                                feed.querySelector('.camera-content').appendChild(slice);
+                                setTimeout(() => slice.remove(), glitchDuration - 50);
+                            }
+                            break;
+                        case 'rgb-split':
+                            const rgbAmount = Math.random() * 20 + 10;
+                            video.style.boxShadow = `${rgbAmount}px 0 0 rgba(255,0,0,0.8), ${-rgbAmount}px 0 0 rgba(0,255,255,0.8), 0 ${rgbAmount/2}px 0 rgba(0,255,0,0.8)`;
+                            video.style.animation = `rgb-shift ${glitchDuration/1000}s linear`;
+                            setTimeout(() => { video.style.boxShadow = 'none'; video.style.animation = ''; }, glitchDuration);
+                            break;
+                        case 'pixel':
+                            video.style.filter = 'blur(1px) contrast(1.5)';
+                            const pixelOverlay = document.createElement('div');
+                            pixelOverlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.3) 3px,rgba(0,0,0,0.3) 6px);background-size:6px 6px;z-index:4;mix-blend-mode:overlay;';
+                            feed.querySelector('.camera-content').appendChild(pixelOverlay);
+                            setTimeout(() => { video.style.filter = ''; pixelOverlay.remove(); }, glitchDuration);
+                            break;
+                        case 'flicker':
+                            const flickerCount = Math.floor(Math.random() * 10) + 5;
+                            const flickerColors = ['rgba(255,0,255,0.5)','rgba(0,255,255,0.5)','rgba(255,255,0,0.5)','rgba(0,0,0,0.7)'];
+                            for (let i = 0; i < flickerCount; i++) {
+                                setTimeout(() => {
+                                    feed.style.opacity = Math.random() * 0.6 + 0.4;
+                                    const jitterX = Math.random() * 10 - 5;
+                                    const jitterY = Math.random() * 10 - 5;
+                                    video.style.transform = `translate(${jitterX}px, ${jitterY}px)`;
+                                    if (Math.random() < 0.5) {
+                                        colorDistortion.style.backgroundColor = flickerColors[Math.floor(Math.random()*flickerColors.length)];
+                                        colorDistortion.style.opacity = 0.7;
+                                    } else {
+                                        colorDistortion.style.opacity = 0;
+                                    }
+                                    if (i === flickerCount - 1) {
+                                        feed.style.opacity = 1;
+                                        video.style.transform = 'none';
+                                        colorDistortion.style.opacity = 0;
+                                    }
+                                }, (glitchDuration / flickerCount) * i);
+                            }
+                            break;
+                        case 'neon':
+                            video.style.filter = 'saturate(300%) brightness(1.2) contrast(1.5)';
+                            feed.querySelector('.camera-content').style.boxShadow = 'inset 0 0 20px rgba(0,255,255,0.8), 0 0 10px rgba(255,0,255,0.8)';
+                            feed.querySelector('.camera-content').style.animation = 'neon-pulse 0.5s alternate infinite';
+                            setTimeout(() => {
+                                video.style.filter = '';
+                                feed.querySelector('.camera-content').style.boxShadow = '';
+                                feed.querySelector('.camera-content').style.animation = '';
+                            }, glitchDuration);
+                            break;
+                        case 'distort':
+                            const skewX = Math.random() * 40 - 20;
+                            const skewY = Math.random() * 40 - 20;
+                            const rotate = Math.random() * 10 - 5;
+                            const scale = 0.8 + Math.random() * 0.4;
+                            video.style.transform = `skew(${skewX}deg, ${skewY}deg) rotate(${rotate}deg) scale(${scale})`;
+                            setTimeout(() => {
+                                video.style.transform = `skew(${-skewX/2}deg, ${-skewY/2}deg) rotate(${-rotate}deg) scale(${2-scale})`;
+                                setTimeout(() => { video.style.transform = 'none'; }, glitchDuration / 3);
+                            }, glitchDuration / 3);
+                            break;
+                        case 'invert':
+                            video.style.filter = 'invert(100%) hue-rotate(180deg)';
+                            setTimeout(() => {
+                                video.style.filter = '';
+                                setTimeout(() => {
+                                    video.style.filter = 'invert(100%) hue-rotate(90deg)';
+                                    setTimeout(() => { video.style.filter = ''; }, 100);
+                                }, 200);
+                            }, glitchDuration - 300);
+                            break;
+                        case 'vhs':
+                            const scanLine = feed.querySelector('.scan-line');
+                            scanLine.style.opacity = 0.8;
+                            scanLine.style.backgroundSize = '100% 4px';
+                            for (let i = 0; i < 3; i++) {
+                                const trackingLine = document.createElement('div');
+                                trackingLine.style.cssText = `position:absolute;left:0;right:0;height:2px;top:${Math.random()*100}%;background:rgba(255,255,255,0.8);z-index:5;box-shadow:0 0 5px rgba(0,255,255,0.8);`;
+                                feed.querySelector('.camera-content').appendChild(trackingLine);
+                                setTimeout(() => {
+                                    trackingLine.style.transform = `translateY(${Math.random()*50-25}px)`;
+                                    setTimeout(() => trackingLine.remove(), 300);
+                                }, Math.random() * 300);
+                            }
+                            video.style.transform = `translateX(${Math.random()*30-15}px)`;
+                            setTimeout(() => {
+                                scanLine.style.opacity = '';
+                                scanLine.style.backgroundSize = '';
+                                video.style.transform = 'none';
+                            }, glitchDuration);
+                            break;
+                        case 'matrix':
+                            const matrixOverlay = document.createElement('div');
+                            matrixOverlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:4;color:#0f0;font-size:10px;overflow:hidden;mix-blend-mode:screen;';
+                            let matrixHtml = '';
+                            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデド';
+                            for (let i = 0; i < 20; i++) {
+                                const randomChars = Array.from({length:20}, () => chars[Math.floor(Math.random()*chars.length)]).join('');
+                                matrixHtml += `<div style="opacity:${Math.random()*0.7+0.3}">${randomChars}</div>`;
+                            }
+                            matrixOverlay.innerHTML = matrixHtml;
+                            feed.querySelector('.camera-content').appendChild(matrixOverlay);
+                            video.style.filter = 'brightness(1.2) contrast(1.5) saturate(0.7)';
+                            setTimeout(() => { matrixOverlay.remove(); video.style.filter = ''; }, glitchDuration);
+                            break;
+                        case 'xray':
+                            video.style.filter = 'invert(85%) contrast(2) brightness(1.5) saturate(0.2)';
+                            const scanOverlay = document.createElement('div');
+                            scanOverlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,255,255,0.2),transparent);background-size:100% 100%;animation:scan-move 1s linear infinite;z-index:4;mix-blend-mode:exclusion;';
+                            feed.querySelector('.camera-content').appendChild(scanOverlay);
+                            setTimeout(() => { video.style.filter = ''; scanOverlay.remove(); }, glitchDuration);
+                            break;
+                    }
+                });
+
+                if (Math.random() < 0.6) {
+                    const cameraId = feed.querySelector('.camera-id').textContent;
+                    const glitchMessages = ['REALITY CORRUPTION','FEED DESTABILIZATION','DIMENSIONAL INTERFERENCE','QUANTUM BIT ERROR','NEURAL NETWORK FAILURE','TEMPORAL ANOMALY','SYSTEM BREACH','CONNECTION FRAGMENTED','DATA EXTRACTION ERROR','PROTOCOL VIOLATION'];
+                    const msg = glitchMessages[Math.floor(Math.random()*glitchMessages.length)];
+                    logEvent(`${msg}: ${cameraId}`);
+                }
+            }
+
+            function setupGlitchEffects() {
+                cameraFeeds.forEach((feed, index) => {
+                    const glitchOverlay = feed.querySelector('.glitch-overlay');
+                    const colorDistortion = feed.querySelector('.color-distortion');
+                    const video = feed.querySelector('.camera-video');
+                    setTimeout(() => applyRandomGlitch(feed, video, glitchOverlay, colorDistortion), Math.random() * 1000);
+                    const minInterval = 2000 + index * 500;
+                    const maxInterval = 8000 + index * 1000;
+                    function scheduleNextGlitch() {
+                        const delay = Math.random() * (maxInterval - minInterval) + minInterval;
+                        setTimeout(() => {
+                            if (Math.random() < 0.85) applyRandomGlitch(feed, video, glitchOverlay, colorDistortion);
+                            scheduleNextGlitch();
+                        }, delay);
+                    }
+                    scheduleNextGlitch();
+                });
+            }
+
+            function setupReducedMotionEffects() {
+                cameraFeeds.forEach(feed => {
+                    feed.querySelector('.noise-overlay').style.opacity = 0.02;
+                    feed.querySelector('.camera-content').style.border = '1px solid rgba(33,150,243,0.3)';
+                });
+            }
+
+            function initializeSystem() {
+                updateTime();
+                setInterval(updateTime, 1000);
+                randomizeScanLines();
+                videoElements.forEach((video, index) => {
+                    const sourceIndex = index % videoSources.length;
+                    video.src = videoSources[sourceIndex];
+                    video.load();
+                    video.addEventListener('canplaythrough', () => {
+                        if (video.id === 'video3' || video.id === 'video5') {
+                            video.style.opacity = 0.5;
+                            const noiseOverlay = video.closest('.camera-feed').querySelector('.noise-overlay');
+                            noiseOverlay.style.opacity = 0.15;
+                        }
+                        video.play().catch(error => {
+                            console.error('Video playback error:', error);
+                            logEvent('ERROR: Camera feed ' + (index+1) + ' playback failed');
+                        });
+                    });
+                });
+                videoElements.forEach(video => video.classList.add('color-mode'));
+                toggleFilterBtn.textContent = 'BW MODE';
+                if (!prefersReducedMotion) setupGlitchEffects(); else setupReducedMotionEffects();
+                logEvent('SECURITY SYSTEM INITIALIZED');
+                logEvent('LOADING CAMERA FEEDS...');
+                setTimeout(() => {
+                    logEvent('WARNING: UNAUTHORIZED ACCESS ATTEMPTS DETECTED');
+                    setTimeout(() => {
+                        logEvent('SYSTEM INTEGRITY: 68%');
+                        setTimeout(() => {
+                            logEvent('APPLYING EMERGENCY PROTOCOLS...');
+                            setTimeout(() => logEvent('ENCRYPTION LAYER COMPROMISED'), 3000);
+                        }, 2000);
+                    }, 1500);
+                }, 1000);
+            }
+
+            cameraFeeds.forEach(feed => {
+                feed.addEventListener('click', () => {
+                    if (feed.classList.contains('fullscreen')) {
+                        feed.classList.remove('fullscreen');
+                        document.body.style.overflow = 'auto';
+                    } else {
+                        document.querySelectorAll('.camera-feed.fullscreen').forEach(f => f.classList.remove('fullscreen'));
+                        feed.classList.add('fullscreen');
+                        document.body.style.overflow = 'hidden';
+                        logEvent(`EXPANDED VIEW: ${feed.querySelector('.camera-id').textContent}`);
+                    }
+                });
+            });
+
+            toggleGridBtn.addEventListener('click', () => {
+                if (gridState === 'three-per-row') {
+                    cameraGrid.classList.remove('three-per-row');
+                    cameraGrid.classList.add('two-per-row');
+                    gridState = 'two-per-row';
+                    toggleGridBtn.textContent = '2x GRID';
+                } else if (gridState === 'two-per-row') {
+                    cameraGrid.classList.remove('two-per-row');
+                    cameraGrid.classList.add('single-column');
+                    gridState = 'single-column';
+                    toggleGridBtn.textContent = '1x GRID';
+                } else {
+                    cameraGrid.classList.remove('single-column');
+                    cameraGrid.classList.add('three-per-row');
+                    gridState = 'three-per-row';
+                    toggleGridBtn.textContent = '3x GRID';
+                }
+                logEvent(`SWITCHED TO ${gridState.toUpperCase().replace(/-/g,' ')} VIEW`);
+            });
+
+            toggleFilterBtn.addEventListener('click', () => {
+                isColorMode = !isColorMode;
+                videoElements.forEach(video => {
+                    if (isColorMode) video.classList.add('color-mode'); else video.classList.remove('color-mode');
+                });
+                toggleFilterBtn.textContent = isColorMode ? 'BW MODE' : 'COLOR MODE';
+                logEvent(`SWITCHED TO ${isColorMode ? 'COLOR' : 'MONOCHROME'} MODE`);
+            });
+
+            resetSystemBtn.addEventListener('click', () => {
+                document.querySelector('.status-alert').textContent = 'REBOOTING';
+                logEvent('SYSTEM RESET INITIATED');
+                document.querySelectorAll('.camera-content').forEach(content => content.style.opacity = 0.2);
+                setTimeout(() => {
+                    logEvent('CLEARING MEMORY BUFFER...');
+                    setTimeout(() => {
+                        logEvent('RESTARTING CAMERA MODULES...');
+                        setTimeout(() => {
+                            document.querySelectorAll('.camera-content').forEach(content => content.style.opacity = 1);
+                            videoElements.forEach(video => {
+                                video.currentTime = 0;
+                                video.play().catch(e => console.error('Video restart error:', e));
+                            });
+                            randomizeScanLines();
+                            document.querySelector('.status-alert').textContent = 'ONLINE';
+                            logEvent('SYSTEM SUCCESSFULLY REBOOTED');
+                            setTimeout(() => {
+                                if (!prefersReducedMotion) {
+                                    cameraFeeds.forEach(feed => {
+                                        const glitchOverlay = feed.querySelector('.glitch-overlay');
+                                        const colorDistortion = feed.querySelector('.color-distortion');
+                                        const video = feed.querySelector('.camera-video');
+                                        setTimeout(() => applyRandomGlitch(feed, video, glitchOverlay, colorDistortion), Math.random() * 2000);
+                                    });
+                                }
+                            }, 1000);
+                        }, 1500);
+                    }, 1000);
+                }, 1000);
+            });
+
+            triggerGlitchBtn.addEventListener('click', () => {
+                logEvent('WARNING: MANUAL INTERFERENCE DETECTED');
+                if (prefersReducedMotion) {
+                    document.querySelectorAll('.camera-content').forEach(content => {
+                        content.style.borderColor = 'var(--sentinel-error)';
+                        setTimeout(() => content.style.borderColor = 'rgba(33,150,243,0.3)', 2000);
+                    });
+                    return;
+                }
+                cameraFeeds.forEach(feed => {
+                    const glitchOverlay = feed.querySelector('.glitch-overlay');
+                    const colorDistortion = feed.querySelector('.color-distortion');
+                    const video = feed.querySelector('.camera-video');
+                    video.style.transform = `translate(${Math.random()*10-5}px, ${Math.random()*10-5}px)`;
+                    video.style.boxShadow = `${Math.random()*8-4}px 0 0 rgba(255,0,0,0.5), ${Math.random()*-8+4}px 0 0 rgba(0,255,255,0.5)`;
+                    feed.querySelector('.noise-overlay').style.opacity = 0.3;
+                    colorDistortion.style.opacity = 0.4;
+                    colorDistortion.style.backgroundColor = 'rgba(255,0,0,0.2)';
+                    colorDistortion.style.mixBlendMode = 'hard-light';
+                    setTimeout(() => {
+                        video.style.transform = 'none';
+                        video.style.boxShadow = 'none';
+                        feed.querySelector('.noise-overlay').style.opacity = 0.03;
+                        colorDistortion.style.opacity = 0;
+                        if (Math.random() < 0.5) {
+                            setTimeout(() => applyRandomGlitch(feed, video, glitchOverlay, colorDistortion), Math.random()*1000+500);
+                        }
+                    }, 800);
+                });
+                setTimeout(() => logEvent('SYSTEM ATTEMPTING TO STABILIZE SIGNAL...'), 1200);
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    const fullscreenCamera = document.querySelector('.camera-feed.fullscreen');
+                    if (fullscreenCamera) {
+                        fullscreenCamera.classList.remove('fullscreen');
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            });
+
+            initializeSystem();
+        })();
+    </script>
 </body>
 </html>
